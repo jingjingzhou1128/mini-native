@@ -1,0 +1,31 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+/* 顶部导航 */
+.navbar .weui-navigation-bar__inner .weui-navigation-bar__left {
+  width: 0 !important;
+}
+.navbar .weui-navigation-bar__inner .weui-navigation-bar__center {
+  text-align: center;
+  justify-content: flex-start;
+}
+

@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/classify/classify",
+    "pages/cat/cat",
+    "pages/my/my",
+    "pages/logs/logs",
+    "pages/404/404"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "优鲜生活",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 50,
+    "pageOrientation": "portrait"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#e6a23c",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/tabBar/index.png",
+        "selectedIconPath": "assets/tabBar/index-active.png"
+      },
+      {
+        "pagePath": "pages/classify/classify",
+        "text": "分类",
+        "iconPath": "assets/tabBar/classify.png",
+        "selectedIconPath": "assets/tabBar/classify-active.png"
+      },
+      {
+        "pagePath": "pages/cat/cat",
+        "text": "购物车",
+        "iconPath": "assets/tabBar/cat.png",
+        "selectedIconPath": "assets/tabBar/cat-active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "assets/tabBar/my.png",
+        "selectedIconPath": "assets/tabBar/my-active.png"
+      }
+    ],
+    "position": "bottom"
+  },
+  "networkTimeout": {
+    "request": 60000,
+    "connectSocket": 60000,
+    "uploadFile": 60000,
+    "downloadFile": 60000
+  },
+  "debug": false,
+  "resizable": false,
+  "usingComponents": {
+    "mp-navigation-bar": "../components/navigation-bar/navigation-bar"
+  },
+  "sitemapLocation": "sitemap.json"
+}
