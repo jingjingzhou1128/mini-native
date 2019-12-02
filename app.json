@@ -8,14 +8,12 @@
     "pages/404/404"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#F8F8F8",
     "navigationBarTitleText": "优鲜生活",
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom",
-    "enablePullDownRefresh": false,
-    "onReachBottomDistance": 50,
-    "pageOrientation": "portrait"
+    "backgroundColor": "#F8F8F8",
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "color": "#000",
@@ -59,7 +57,7 @@
   "debug": false,
   "resizable": false,
   "usingComponents": {
-    "mp-navigation-bar": "../components/navigation-bar/navigation-bar"
+    "mp-navigation-bar": "../components/weui-miniprogram/navigation-bar/navigation-bar"
   },
   "sitemapLocation": "sitemap.json"
 }
