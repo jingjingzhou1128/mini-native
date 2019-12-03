@@ -1,10 +1,27 @@
+@import "assets/fonts/iconfont.wxss";
+@import 'components/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
+/* 顶部导航 */
+.navbar {
+  background-color: #fff;
+}
+.navbar .weui-navigation-bar__inner .weui-navigation-bar__left {
+  width: 0 !important;
+}
+.navbar .weui-navigation-bar__inner .weui-navigation-bar__center {
+  text-align: center;
+  justify-content: flex-start;
+}
+
 /**app.wxss**/
 .container {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
+  min-height: 100%;
   box-sizing: border-box;
-} 
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+icon {
+  margin-top: -6px;
+  vertical-align: unset;
+}

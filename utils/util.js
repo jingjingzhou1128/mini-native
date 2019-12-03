@@ -14,6 +14,44 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// 函数节流
+function throttle(fn, interval = 500) {
+  let timer = null
+  let firstTime = true
+  return function (...args) {
+    if (firstTime) {
+      // 第一次加载
+      fn.apply(this, args)
+      firstTime = false
+      return
+    }
+    if (timer) {
+      // 定时器正在执行中，跳过
+      return
+    }
+    timer = setTimeout(() => {
+      fn.apply(this, args)
+      // clearTimeout(timer)
+      timer = null
+    }, interval)
+  }
+}
+
+// 函数防抖
+function debounce(fn, interval = 500) {
+  let timer = null
+  return function (...args) {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      fn.apply(this, args)
+    }, interval)
+  }
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  throttle: throttle,
+  debounce: debounce
 }

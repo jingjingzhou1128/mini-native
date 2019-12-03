@@ -2,7 +2,60 @@
 <mp-navigation-bar ext-class="navbar" title="优鲜生活" back="{{false}}"></mp-navigation-bar>
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
+  <view class="search-wrapper">
+    <view class="left">
+      <icon class="iconfont icon-dingwei"></icon>
+      <text>最快送达</text>
+    </view>
+    <button class="to-search">
+      <icon class="iconfont icon-sousuo"></icon>
+      <text>智利车厘子J级29.9</text>
+    </button>
+  </view>
+  <view class="swiper-wrapper">
+    <swiper
+      current="{{currentSwiper}}"
+      autoplay="{{true}}"
+      interval="{{5000}}"
+      bindchange="swiperChanged">
+      <block wx:for="{{swiper}}" wx:key="{{index}}">
+        <swiper-item>
+          <view class="swiper-item">
+            <image src="{{item.src}}" mode="widthFix"></image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <text class="swiper-index">{{swiperIndex}}/{{swiper.length}}</text>
+    <button class="btn-share">立即分享</button>
+  </view>
+  <view class="classify-wrapper">
+    <view class="equity-list">
+      <view class="equity-item">
+        <icon class="iconfont icon-shezhi"></icon>
+        <text>严格品控享安心</text>
+      </view>
+      <view class="equity-item">
+        <icon class="iconfont icon-shezhi"></icon>
+        <text>全球原产地直采</text>
+      </view>
+      <view class="equity-item">
+        <icon class="iconfont icon-shezhi"></icon>
+        <text>24小时快速退款</text>
+      </view>
+    </view>
+    <movable-area style="width: 100%;">
+      <movable-view style="width: 200%;" class="classify-content" direction="horizontal" bindchange="changeMove">
+        <view class="classify-item" wx:for="{{classifyList}}" wx:key="{{index}}">
+          <view class="image-wrapper">
+            <image src="{{item.src}}" mode="widthFix"></image>
+          </view>
+          <text>{{item.name}}</text>
+        </view>
+      </movable-view>
+    </movable-area>
+  </view>
+  <!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
@@ -11,5 +64,5 @@
   </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
-  </view>
+  </view> -->
 </view>
