@@ -1,5 +1,5 @@
 <!-- nabbar -->
-<mp-navigation-bar ext-class="navbar" title="优鲜生活" back="{{false}}"></mp-navigation-bar>
+<!-- <mp-navigation-bar ext-class="navbar" title="优鲜生活" back="{{false}}"></mp-navigation-bar> -->
 <!--index.wxml-->
 <view class="container">
   <view class="search-wrapper">
@@ -17,7 +17,7 @@
       current="{{currentSwiper}}"
       autoplay="{{true}}"
       interval="{{5000}}"
-      bindchange="swiperChanged">
+      bindchange="handlerSwiper">
       <block wx:for="{{swiper}}" wx:key="{{index}}">
         <swiper-item>
           <view class="swiper-item">
@@ -44,8 +44,8 @@
         <text>24小时快速退款</text>
       </view>
     </view>
-    <movable-area style="width: 100%;">
-      <movable-view style="width: 200%;" class="classify-content" direction="horizontal" bindchange="changeMove">
+    <movable-area style="width: 100%;" id="classifyMoveWrap">
+      <movable-view style="width: 200%;" class="classify-content" direction="horizontal" bindchange="handlerMove" id="classifyMove">
         <view class="classify-item" wx:for="{{classifyList}}" wx:key="{{index}}">
           <view class="image-wrapper">
             <image src="{{item.src}}" mode="widthFix"></image>
@@ -54,7 +54,24 @@
         </view>
       </movable-view>
     </movable-area>
+    <progress percent="{{moveProgress}}" active active-mode="forwards" border-radius="{{3}}" stroke-width="{{4}} " activeColor="#f53e5d" backgroundColor="#ddd" duration="{{10}}"/>
   </view>
+  <view class="goods-wrapper">
+    <movable-area style="width: 100%;height: 37px;">
+      <movable-view style="width: {{goodsClassList.length * 75}}px;" direction="horizontal">
+        <view wx:for="{{goodsClassList}}" wx:key="index" class="goods-class {{item.classify === goodsSelected ? 'selected' : ''}}" data-classify="{{item.classify}}" bindtap="handlerFilterGoods">
+          <view class="name">{{item.name}}</view>
+          <view class="type">{{item.type}}</view>
+        </view>
+      </movable-view>
+    </movable-area>
+    <recycle-view batch="{{batchSetRecycleData}}" id="recycleId">
+      <recycle-item wx:for="{{goodsList}}" wx:key="id">
+        <view>{{item.title}}</view>
+      </recycle-item>
+    </recycle-view>
+  </view>
+
   <!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>

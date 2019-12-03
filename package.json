@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "miniprogram-recycle-view": "^0.1.5",
+    "regenerator": "^0.14.2",
     "weui-miniprogram": "^0.2.0"
   }
 }

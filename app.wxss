@@ -1,5 +1,5 @@
 @import "assets/fonts/iconfont.wxss";
-@import 'components/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+/* @import 'components/weui-miniprogram/weui-wxss/dist/style/weui.wxss'; */
 
 /* 顶部导航 */
 .navbar {
@@ -19,6 +19,7 @@
   flex-direction: column;
   min-height: 100%;
   box-sizing: border-box;
+  overflow: hidden;
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 }
 icon {

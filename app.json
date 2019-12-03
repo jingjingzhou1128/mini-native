@@ -13,7 +13,7 @@
     "navigationBarTitleText": "优鲜生活",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#F8F8F8",
-    "navigationStyle": "custom"
+    "navigationStyle": "default"
   },
   "tabBar": {
     "color": "#000",

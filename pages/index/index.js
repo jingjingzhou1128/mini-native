@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-import { debounce } from '../../utils/util.js'
+const createRecycleContext = require('../../components/miniprogram-recycle-view/index.js')
 
 Page({
   data: {
@@ -104,26 +104,125 @@ Page({
         name: '速食粮油'
       }
     ],
-    moveProgress: '0%'
+    goodsClassList: [
+      {
+        name: '推荐',
+        type: '猜你喜欢',
+        classify: '1'
+      },
+      {
+        name: '推销爆款',
+        type: '必买榜单',
+        classify: '2'
+      },
+      {
+        name: '一件包邮',
+        type: '一件包邮',
+        classify: '3'
+      },
+      {
+        name: '0元菜场',
+        type: '免费领菜',
+        classify: '4'
+      },
+      {
+        name: '火锅',
+        type: '一站购齐',
+        classify: '5'
+      },
+      {
+        name: '营养早餐',
+        type: '提前准备好',
+        classify: '6'
+      },
+      {
+        name: '大闸蟹',
+        type: '时令好货',
+        classify: '7'
+      }
+    ],
+    goodsSelected: '1',
+    moveProgress: 0,
+    moveTimer: null,
+    batchSetRecycleData: true,
+    goodsList: []
   },
-  swiperChanged: function (e) {
-    this.setData({
-      swiperIndex: e.detail.current + 1
-    })
-  },
+  // 监听页面加载回调函数
   onLoad: function () {
     this.setData({
       currentSwiper: 0,
       swiperIndex: 1
     })
   },
-  //事件处理函数
-  changeMove: debounce((e) => {
-    let progress = `${Math.round((-e.detail.x / 300) * 100)}%`
-    this.setData({
-      moveProgress: progress
+  // 监听页面初次渲染完成回调函数
+  onReady: function () {
+    this.getMoveProgress(0)
+    let list = []
+    let length = this.data.goodsList.length
+    for (let i = 0; i < 10; i++) {
+      list.push({
+        id: length + i,
+        title: 'goods' + length
+      })
+    }
+    let ctx = createRecycleContext({
+      id: 'recycleId',
+      dataKey: 'goodsList',
+      page: this,
+      itemSize: {
+        width: 150,
+        height: 150,
+      }
     })
-  })
+    ctx.append(list)
+  },
+  // 获取移动进度
+  getMoveProgress: function (offsetX) {
+    let query = this.createSelectorQuery()
+    let _this = this
+    query.select('#classifyMoveWrap').boundingClientRect(rect => {
+      let wrapWidth = rect.width
+      let moveWidth = rect.width * 2
+      let moveProgress = 0
+      if (moveWidth <= 0) {
+        moveProgress = 0
+      } else if (offsetX === 0) {
+        moveProgress = Math.round((wrapWidth / moveWidth) * 100)
+      } else {
+        moveProgress = Math.round(((-offsetX + wrapWidth) / moveWidth) * 100)
+      }
+      _this.setData({
+        moveProgress: moveProgress
+      })
+    }).exec()
+  },
+  // swiper 滑动事件处理
+  handlerSwiper: function (e) {
+    this.setData({
+      swiperIndex: e.detail.current + 1
+    })
+  },
+  // move 移动事件处理
+  handlerMove: function (e) {
+    if (this.customData.moveTimer) {
+      clearTimeout(this.customData.moveTimer)
+    }
+    let timer = null
+    this.customData.moveTimer = setTimeout(() => {
+      this.getMoveProgress(e.detail.x)
+    }, 500)
+  },
+  // 切换商品类别过滤事件处理
+  handlerFilterGoods: function (e) {
+    this.setData({
+      goodsSelected: e.currentTarget.dataset.classify
+    })
+  },
+  // 自由数据
+  customData: {
+    moveTimer: null
+  }
+  
   // bindViewTap: function() {
   //   wx.navigateTo({
   //     url: '../logs/logs'
