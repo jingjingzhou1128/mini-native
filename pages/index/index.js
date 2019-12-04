@@ -144,8 +144,11 @@ Page({
     goodsSelected: '1',
     moveProgress: 0,
     moveTimer: null,
-    batchSetRecycleData: true,
-    goodsList: []
+    goodsList: [],
+    loadFinish: false,
+    stickyTop: 0,
+    isSticky: false,
+    isLoading: false
   },
   // 监听页面加载回调函数
   onLoad: function () {
@@ -153,28 +156,54 @@ Page({
       currentSwiper: 0,
       swiperIndex: 1
     })
+    this.getGoodsList()
   },
   // 监听页面初次渲染完成回调函数
   onReady: function () {
     this.getMoveProgress(0)
-    let list = []
-    let length = this.data.goodsList.length
+    this.initStickyTop()
+  },
+  // 监听页面上拉触底事件触发函数
+  onReachBottom: function () {
+    if (this.data.isLoading) return
+    this.getGoodsList()
+  },
+  // 页面滚动触发的事件
+  onPageScroll (obj) {
+    this.setData({
+      isSticky: (obj.scrollTop + 44) > this.data.stickyTop
+    })
+  },
+  // 初始化商品分类距离顶部距离
+  initStickyTop () {
+    let query = wx.createSelectorQuery()
+    query.select('#goodsMenu').boundingClientRect(res => {
+      this.setData({
+        stickyTop: res.top
+      })
+    }).exec()
+  },
+  // 获取商品列表信息
+  getGoodsList () {
+    let goodsLength = this.data.goodsList.length
+    if (goodsLength >= 100) {
+      this.setData({
+        loadFinish: true
+      })
+      return
+    }
+    let goodsList = []
     for (let i = 0; i < 10; i++) {
-      list.push({
-        id: length + i,
-        title: 'goods' + length
+      goodsList.push({
+        src: '../../assets/images/fruit.png',
+        title: '湾仔码头三鲜水饺300g',
+        desc: '瞧这一个个白小胖 可爱诱人',
+        price: 33.9
       })
     }
-    let ctx = createRecycleContext({
-      id: 'recycleId',
-      dataKey: 'goodsList',
-      page: this,
-      itemSize: {
-        width: 150,
-        height: 150,
-      }
+    this.setData({
+      goodsList: [...this.data.goodsList, ...goodsList]
     })
-    ctx.append(list)
   },
   // 获取移动进度
   getMoveProgress: function (offsetX) {
@@ -215,8 +244,17 @@ Page({
   // 切换商品类别过滤事件处理
   handlerFilterGoods: function (e) {
     this.setData({
-      goodsSelected: e.currentTarget.dataset.classify
+      goodsSelected: e.currentTarget.dataset.classify,
+      isLoading: true,
+      goodsList: []
     })
+    let _this = this
+    setTimeout(() => {
+      _this.getGoodsList()
+      this.setData({
+        isLoading: false
+      })
+    }, 2000)
   },
   // 自由数据
   customData: {

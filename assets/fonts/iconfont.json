@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "356445",
+      "name": "加号",
+      "font_class": "jiahao",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
       "icon_id": "837303",
       "name": "user",
       "font_class": "user",
@@ -123,6 +130,13 @@
       "font_class": "dingwei",
       "unicode": "e632",
       "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "11813168",
+      "name": "loading-onequarter",
+      "font_class": "loading",
+      "unicode": "e609",
+      "unicode_decimal": 58889
     }
   ]
 }
