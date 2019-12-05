@@ -1,0 +1,50 @@
+<!--pages/search/search.wxml-->
+<view class="container">
+  <view class="search-wrapper">
+    <van-search 
+      value="{{ searchValue }}" 
+      placeholder="智利车厘子JJ级 39.9" 
+      use-action-slot 
+      bind:change="onChange"
+      bind:search="onSearch" 
+      focus
+      custom-class="search-input">
+      <view slot="action" bind:tap="onSearch">搜索</view>
+    </van-search>
+  </view>
+
+  <block wx:if="{{historyList.length > 0}}">
+    <view class="search-history">
+      <view class="list-header">
+        <text class="title">历史搜索</text>
+        <view class="header-menu">
+          <icon class="iconfont icon-shanchu" bindtap="deleteHistory"></icon>
+        </view>
+      </view>
+      <view class="list-content">
+        <view wx:for="{{historyList}}" wx:key="index" class="list-item {{item.isHot ? 'hot' : ''}}" data-value="{{item.value}}" bindtap="quickSearch">
+          <text>{{item.name}}</text>
+          <block wx:if="{{item.isHot}}">
+            <icon class="iconfont icon-remen1"></icon>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{hotList.length > 0}}">
+    <view class="search-hot">
+      <view class="list-header">
+        <text class="title">热门搜索</text>
+      </view>
+      <view class="list-content">
+        <view wx:for="{{hotList}}" wx:key="index" class="list-item {{item.isHot ? 'hot' : ''}}" data-value="{{item.value}}" bindtap="quickSearch">
+          <text>{{item.name}}</text>
+          <block wx:if="{{item.isHot}}">
+            <icon class="iconfont icon-remen1"></icon>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

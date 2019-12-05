@@ -33,7 +33,7 @@
 .search-wrapper .to-search {
   height: 24px;
   line-height: 24px;
-  color: #333;
+  color: #aaa;
   border-color: #eee;
   background-color: #eee;
   border-radius: 5px;
@@ -152,7 +152,6 @@
   padding-top: 54px;
 }
 .goods-wrapper .loading-wrapper {
-  height: 500px;
   text-align: cener;
   padding-top: 150px;
   box-sizing: border-box;

@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
-const app = getApp()
-const createRecycleContext = require('../../components/miniprogram-recycle-view/index.js')
+// const app = getApp()
+// const createRecycleContext = require('../../components/miniprogram-recycle-view/index.js')
 
 Page({
   data: {
@@ -9,8 +9,9 @@ Page({
     // userInfo: {},
     // hasUserInfo: false,
     // canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    // 当前所在滑块index
     swiperIndex: 1,
-    currentSwiper: 0,
+    // 滑块项
     swiper: [
       {
         src: '../../assets/images/swiper-1.jpg'
@@ -22,6 +23,7 @@ Page({
         src: '../../assets/images/swiper-1.jpg'
       }
     ],
+    // 总分类列表
     classifyList: [
       {
         src: '../../assets/images/fruit.png',
@@ -104,6 +106,7 @@ Page({
         name: '速食粮油'
       }
     ],
+    // 商品分类列表
     goodsClassList: [
       {
         name: '推荐',
@@ -141,27 +144,32 @@ Page({
         classify: '7'
       }
     ],
+    // 当前选中的商品分类
     goodsSelected: '1',
+    // 商品分类移动进度
     moveProgress: 0,
-    moveTimer: null,
+    // 商品列表
     goodsList: [],
+    // 是否已加载当前分类下的所有商品
     loadFinish: false,
+    // 商品分类距离页面顶部距离
     stickyTop: 0,
+    // 商品分类是否吸顶
     isSticky: false,
-    isLoading: false
+    // 商品是否在加载中
+    isLoading: false,
+    // 窗口可用高度
+    windowHeight: 0
   },
   // 监听页面加载回调函数
   onLoad: function () {
-    this.setData({
-      currentSwiper: 0,
-      swiperIndex: 1
-    })
     this.getGoodsList()
   },
   // 监听页面初次渲染完成回调函数
   onReady: function () {
     this.getMoveProgress(0)
     this.initStickyTop()
+    this.getScreenHeight()
   },
   // 监听页面上拉触底事件触发函数
   onReachBottom: function () {
@@ -205,6 +213,14 @@ Page({
       goodsList: [...this.data.goodsList, ...goodsList]
     })
   },
+  // 获取屏幕可用高度
+  getScreenHeight () {
+    console.log(wx.getSystemInfoSync())
+    let systemInfo = wx.getSystemInfoSync()
+    this.setData({
+      windowHeight: systemInfo.windowHeight
+    })
+  },
   // 获取移动进度
   getMoveProgress: function (offsetX) {
     let query = this.createSelectorQuery()
@@ -243,6 +259,11 @@ Page({
   },
   // 切换商品类别过滤事件处理
   handlerFilterGoods: function (e) {
+    if (this.data.isSticky) {
+      wx.pageScrollTo({
+        scrollTop: this.data.stickyTop,
+      })
+    }
     this.setData({
       goodsSelected: e.currentTarget.dataset.classify,
       isLoading: true,
@@ -258,6 +279,7 @@ Page({
   },
   // 自由数据
   customData: {
+    // 商品分类移动定时器索引
     moveTimer: null
   }
   

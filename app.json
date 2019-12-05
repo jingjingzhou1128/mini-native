@@ -5,7 +5,9 @@
     "pages/cat/cat",
     "pages/my/my",
     "pages/logs/logs",
-    "pages/404/404"
+    "pages/404/404",
+    "pages/search/search",
+    "pages/searchResult/searchResult"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -16,8 +18,8 @@
     "navigationStyle": "default"
   },
   "tabBar": {
-    "color": "#000",
-    "selectedColor": "#e6a23c",
+    "color": "#8a8a8a",
+    "selectedColor": "#f53e5d",
     "backgroundColor": "#fff",
     "borderStyle": "black",
     "list": [
@@ -56,8 +58,6 @@
   },
   "debug": false,
   "resizable": false,
-  "usingComponents": {
-    "mp-navigation-bar": "../components/weui-miniprogram/navigation-bar/navigation-bar"
-  },
+  "usingComponents": {},
   "sitemapLocation": "sitemap.json"
 }

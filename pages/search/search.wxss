@@ -1,0 +1,58 @@
+/* pages/search/search.wxss */
+.container {
+  background: #fff;
+}
+.search-wrapper {
+  padding: 10px;
+  font-size: 13px;
+}
+.search-wrapper .van-search {
+  padding: 0;
+}
+.search-wrapper .van-search .field-index--van-field {
+  padding: 0 10px 0 0 !important;
+  font-size: 13px;
+}
+.search-wrapper .van-search .van-icon {
+  color: #aaa;
+}
+.search-wrapper .van-search .van-search__action {
+  line-height: 24px;
+  font-size: 13px;
+}
+.search-history, .search-hot {
+  padding: 10px;
+}
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.list-header .title {
+  font-size: 13px;
+}
+.list-header .header-menu icon {
+  font-size: 14px;
+}
+.list-content {
+  padding: 10px 0;
+}
+.list-content .list-item {
+  display: inline-block;
+  font-size: 12px;
+  background: #eee;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 5px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.list-content .list-item.hot {
+  color: #f53e5d;
+}
+.list-content .list-item.hot icon {
+  margin-left: 5px;
+  color: #f53e5d;
+  font-size: 13px;
+}

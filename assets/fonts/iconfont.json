@@ -48,6 +48,13 @@
       "unicode_decimal": 58894
     },
     {
+      "icon_id": "1638201",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
       "icon_id": "1764101",
       "name": "消息",
       "font_class": "notice",
@@ -60,6 +67,13 @@
       "font_class": "zhuti",
       "unicode": "e682",
       "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "3858029",
+      "name": "热门",
+      "font_class": "remen1",
+      "unicode": "e645",
+      "unicode_decimal": 58949
     },
     {
       "icon_id": "5158410",
@@ -130,13 +144,6 @@
       "font_class": "dingwei",
       "unicode": "e632",
       "unicode_decimal": 58930
-    },
-    {
-      "icon_id": "11813168",
-      "name": "loading-onequarter",
-      "font_class": "loading",
-      "unicode": "e609",
-      "unicode_decimal": 58889
     }
   ]
 }

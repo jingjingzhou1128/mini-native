@@ -7,14 +7,13 @@
       <icon class="iconfont icon-dingwei"></icon>
       <text>最快送达</text>
     </view>
-    <button class="to-search">
+    <navigator class="to-search" url="../../pages/search/search">
       <icon class="iconfont icon-sousuo"></icon>
       <text>智利车厘子J级29.9</text>
-    </button>
+    </navigator>
   </view>
   <view class="swiper-wrapper">
     <swiper
-      current="{{currentSwiper}}"
       autoplay="{{true}}"
       interval="{{5000}}"
       bindchange="handlerSwiper">
@@ -85,7 +84,7 @@
       </view>
       <view class="bottom-tip" wx:if="{{loadFinish}}">我是有底线的～</view>
     </block>
-    <view wx:else class="loading-wrapper">
+    <view wx:else class="loading-wrapper" style="height:{{windowHeight}}px;">
       <view class="loading"></view>
     </view>
   </view>

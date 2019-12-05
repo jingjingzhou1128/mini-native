@@ -1,7 +1,4 @@
 {
   "onReachBottomDistance": 100,
-  "usingComponents": {
-    "recycle-view": "../../components/miniprogram-recycle-view/recycle-view",
-    "recycle-item": "../../components/miniprogram-recycle-view/recycle-item"
-  }
+  "usingComponents": {}
 }
