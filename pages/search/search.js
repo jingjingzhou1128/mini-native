@@ -49,7 +49,9 @@ Page({
         value: '3',
         isHot: false
       }
-    ]
+    ],
+    searching: false,
+    recomList: []
   },
 
   /**
@@ -112,6 +114,9 @@ Page({
    * @description 搜索
    */
   onSearch (e) {
+    this.setData({
+      recomList: []
+    })
     console.log(this.data.searchValue)
   },
   /**
@@ -120,6 +125,13 @@ Page({
   onChange (e) {
     this.setData({
       searchValue: e.detail
+    })
+    let recomList = []
+    if (e.detail !== '') {
+      recomList = this.customData.list
+    }
+    this.setData({
+      recomList: recomList
     })
   },
   /**
@@ -134,7 +146,38 @@ Page({
    * @description 点击热门搜索或者历史搜索
    */
   quickSearch (e) {
+    this.setData({
+      recomList: []
+    })
     let value = e.currentTarget.dataset && e.currentTarget.dataset.value
     console.log(value)
+  },
+  
+  /**
+   * @description 自定义数据
+   */
+  customData: {
+    list: [
+      {
+        name: '鲜活大闸蟹',
+        value: '1'
+      },
+      {
+        name: '鸡翅中',
+        value: '2'
+      },
+      {
+        name: '西红柿',
+        value: '3'
+      },
+      {
+        name: '基围虾',
+        value: '4'
+      },
+      {
+        name: '爱媛果冻橙',
+        value: '5'
+      }
+    ]
   }
 })

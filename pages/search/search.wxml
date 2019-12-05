@@ -13,38 +13,48 @@
     </van-search>
   </view>
 
-  <block wx:if="{{historyList.length > 0}}">
-    <view class="search-history">
-      <view class="list-header">
-        <text class="title">历史搜索</text>
-        <view class="header-menu">
-          <icon class="iconfont icon-shanchu" bindtap="deleteHistory"></icon>
-        </view>
-      </view>
-      <view class="list-content">
-        <view wx:for="{{historyList}}" wx:key="index" class="list-item {{item.isHot ? 'hot' : ''}}" data-value="{{item.value}}" bindtap="quickSearch">
-          <text>{{item.name}}</text>
-          <block wx:if="{{item.isHot}}">
-            <icon class="iconfont icon-remen1"></icon>
-          </block>
-        </view>
-      </view>
+  <block wx:if="{{recomList.length > 0}}">
+    <view class="recom-list">
+      <view class="recom-item">车厘子</view>
+      <view class="recom-item">车厘子</view>
+      <view class="recom-item">车厘子</view>
     </view>
   </block>
 
-  <block wx:if="{{hotList.length > 0}}">
-    <view class="search-hot">
-      <view class="list-header">
-        <text class="title">热门搜索</text>
-      </view>
-      <view class="list-content">
-        <view wx:for="{{hotList}}" wx:key="index" class="list-item {{item.isHot ? 'hot' : ''}}" data-value="{{item.value}}" bindtap="quickSearch">
-          <text>{{item.name}}</text>
-          <block wx:if="{{item.isHot}}">
-            <icon class="iconfont icon-remen1"></icon>
-          </block>
+  <block wx:else>
+    <block wx:if="{{historyList.length > 0}}">
+      <view class="search-history">
+        <view class="list-header">
+          <text class="title">历史搜索</text>
+          <view class="header-menu">
+            <icon class="iconfont icon-shanchu" bindtap="deleteHistory"></icon>
+          </view>
+        </view>
+        <view class="list-content">
+          <view wx:for="{{historyList}}" wx:key="index" class="list-item {{item.isHot ? 'hot' : ''}}" data-value="{{item.value}}" bindtap="quickSearch">
+            <text>{{item.name}}</text>
+            <block wx:if="{{item.isHot}}">
+              <icon class="iconfont icon-remen1"></icon>
+            </block>
+          </view>
         </view>
       </view>
-    </view>
+    </block>
+
+    <block wx:if="{{hotList.length > 0}}">
+      <view class="search-hot">
+        <view class="list-header">
+          <text class="title">热门搜索</text>
+        </view>
+        <view class="list-content">
+          <view wx:for="{{hotList}}" wx:key="index" class="list-item {{item.isHot ? 'hot' : ''}}" data-value="{{item.value}}" bindtap="quickSearch">
+            <text>{{item.name}}</text>
+            <block wx:if="{{item.isHot}}">
+              <icon class="iconfont icon-remen1"></icon>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
   </block>
 </view>

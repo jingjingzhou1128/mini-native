@@ -56,3 +56,12 @@
   color: #f53e5d;
   font-size: 13px;
 }
+.recom-list {
+  padding: 10px;
+}
+.recom-list .recom-item {
+  height: 26px;
+  line-height: 26px;
+  font-size: 12px;
+  border-bottom: 1px solid #eee;
+}
