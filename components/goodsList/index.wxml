@@ -1,0 +1,19 @@
+<!--components/goodsList/index.wxml-->
+<view class="goods-list">
+  <navigator class="goods-item" wx:for="{{goodsList}}" wx:key="index" url="../../pages/goodsDetail/index">
+    <view class="img-wrapper">
+      <image src="{{item.src}}" mode="widthFix"></image>
+    </view>
+    <view class="info">
+      <view class="title">{{item.title}}</view>
+      <view class="desc">{{item.desc}}</view>
+    </view>
+    <view class="bottom">
+      <text class="price">¥{{item.price}}</text>
+      <view class="btn-shop">
+        <icon class="iconfont icon-jiahao"></icon>
+      </view>
+    </view>
+  </navigator>
+  <slot></slot>
+</view>

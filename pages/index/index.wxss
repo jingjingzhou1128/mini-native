@@ -108,6 +108,7 @@
 .classify-wrapper .equity-item icon {
   font-size: 10px;
   margin-right: 3px;
+  vertical-align: unset;
 }
 .classify-wrapper movable-area {
   height: 161px;
@@ -152,19 +153,12 @@
   padding-top: 54px;
 }
 .goods-wrapper .loading-wrapper {
-  text-align: cener;
+  text-align: center;
   padding-top: 150px;
   box-sizing: border-box;
 }
 .goods-wrapper.sticky .loading-wrapper  {
   padding-top: 204px;
-}
-.goods-wrapper .loading-wrapper .loading {
-  width: 30px;
-  height: 30px;
-  border: 6px solid #ddd;
-  border-radius: 50%;
-  margin: 0 auto;
 }
 .goods-wrapper movable-area {
   background: #f5f5f5;
@@ -222,7 +216,7 @@
   background: #f53e5d;
   border-radius: 8px;
 }
-.goods-list {
+/* .goods-list {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -280,7 +274,7 @@
   font-weight: 800;
   margin-top: -10px;
   vertical-align: top;
-}
+} */
 .goods-wrapper .bottom-tip {
   text-align: center;
   font-size: 12px;

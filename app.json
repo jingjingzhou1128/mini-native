@@ -7,11 +7,11 @@
     "pages/logs/logs",
     "pages/404/404",
     "pages/search/search",
-    "pages/searchResult/searchResult"
+    "pages/goodsDetail/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "优鲜生活",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#F8F8F8",

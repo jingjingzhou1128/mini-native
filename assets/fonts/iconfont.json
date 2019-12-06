@@ -20,6 +20,13 @@
       "unicode_decimal": 59480
     },
     {
+      "icon_id": "982337",
+      "name": "主页",
+      "font_class": "zhuye",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
       "icon_id": "996875",
       "name": "关闭",
       "font_class": "close",
@@ -41,6 +48,13 @@
       "unicode_decimal": 59244
     },
     {
+      "icon_id": "1207836",
+      "name": "left",
+      "font_class": "left",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
       "icon_id": "1471833",
       "name": "close",
       "font_class": "guanbi",
@@ -60,6 +74,13 @@
       "font_class": "notice",
       "unicode": "e6f5",
       "unicode_decimal": 59125
+    },
+    {
+      "icon_id": "1901682",
+      "name": "购物车",
+      "font_class": "gouwuche",
+      "unicode": "e601",
+      "unicode_decimal": 58881
     },
     {
       "icon_id": "2471410",

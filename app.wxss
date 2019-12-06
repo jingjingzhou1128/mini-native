@@ -23,5 +23,5 @@
 }
 icon {
   margin-top: -6px;
-  vertical-align: unset;
+  vertical-align: middle;
 }

@@ -1,10 +1,11 @@
 /* pages/search/search.wxss */
 .container {
-  background: #fff;
+  background: #f5f5f5;
 }
 .search-wrapper {
   padding: 10px;
   font-size: 13px;
+  background: #fff;
 }
 .search-wrapper .van-search {
   padding: 0;
@@ -20,8 +21,28 @@
   line-height: 24px;
   font-size: 13px;
 }
+.search-wrapper .van-search .van-search__action icon {
+  font-size: 20px;
+}
+.search-wrapper .van-search navigator {
+  position: relative;
+}
+.search-wrapper .van-search .badge {
+  position: absolute;
+  right: -8px;
+  top: 0;
+  display: block;
+  background: #f53e5d;
+  font-size: 10px;
+  height: 14px;
+  line-height: 14px;
+  color: #fff;
+  border-radius: 7px;
+  padding: 0 3px;
+}
 .search-history, .search-hot {
   padding: 10px;
+  background: #fff;
 }
 .list-header {
   display: flex;
@@ -58,10 +79,33 @@
 }
 .recom-list {
   padding: 10px;
+  background: #fff;
 }
 .recom-list .recom-item {
   height: 26px;
   line-height: 26px;
   font-size: 12px;
   border-bottom: 1px solid #eee;
+}
+.search-result {
+  padding: 10px;
+  margin-top: 10px;
+}
+.empty-content {
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #f53e5d;
+  background: #fff;
+}
+.recom-goods {
+  padding: 10px;
+  margin-top: 20px;
+}
+.recom-goods .header {
+  margin-bottom: 10px;
+}
+.recom-goods .header .title {
+  font-size: 14px;
+  font-weight: 600;
 }

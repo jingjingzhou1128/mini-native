@@ -65,7 +65,7 @@
       </movable-view>
     </movable-area>
     <block wx:if="{{!isLoading}}">
-      <view class="goods-list">
+      <!-- <view class="goods-list">
         <view class="goods-item" wx:for="{{goodsList}}" wx:key="index">
           <view class="img-wrapper">
             <image src="{{item.src}}" mode="widthFix"></image>
@@ -81,11 +81,12 @@
             </view>
           </view>
         </view>
-      </view>
+      </view> -->
+      <goods-list goodsList="{{goodsList}}"></goods-list>
       <view class="bottom-tip" wx:if="{{loadFinish}}">我是有底线的～</view>
     </block>
     <view wx:else class="loading-wrapper" style="height:{{windowHeight}}px;">
-      <view class="loading"></view>
+      <van-loading color="#f53e5d"></van-loading>
     </view>
   </view>
 
