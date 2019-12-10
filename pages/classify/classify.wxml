@@ -28,7 +28,7 @@
       <view class="classify-scroll-wrapper">
         <scroll-view scroll-x="true" class="classify-scroll">
           <view wx:for="{{subClassifyList}}" wx:key="{{index}}" class="tab-item {{activeSubClassify === item.name ? 'active' : ''}}">{{item.name}}</view>
-          <view style="width: 40px;display: inline-block;height: 20px;"></view>
+          <view style="width: 40px;display: inline-block;"></view>
         </scroll-view>
         <view class="classify-all">
           <icon class="iconfont icon-arrow-down"></icon>
