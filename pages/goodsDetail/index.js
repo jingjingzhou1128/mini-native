@@ -9,6 +9,8 @@ Page({
     statusBarHeight: 0,
     // 顶部导航栏透明度
     navbarOpacity: 0,
+    // 当前激活导航项
+    activeMenu: 'goods',
     // 当前所在滑块index
     swiperIndex: 1,
     // 滑块项
@@ -146,8 +148,16 @@ Page({
         price: 33.9
       }
     ],
-    // 商品分类移动进度
-    moveProgress: 0
+    // 推荐商品移动进度
+    moveProgress: 0,
+    // 导航锚点距离顶部距离
+    targetTop: {
+      goods: 0,
+      recom: 0,
+      detail: 0
+    },
+    // 优惠详情上拉框
+    discountDialogFlag: false
   },
 
   /**
@@ -163,6 +173,7 @@ Page({
    */
   onReady: function () {
     this.getMoveProgress(0)
+    this.getTargetTop()
   },
 
   /**
@@ -212,13 +223,25 @@ Page({
    */
   onPageScroll: function (obj) {
     let opacity
-    if (obj.scrollTop >= 400) {
+    let activeTarget
+    // 设置导航栏透明度
+    if (obj.scrollTop >= 300) {
       opacity = 1
     } else {
-      opacity = obj.scrollTop / 400
+      opacity = obj.scrollTop / 300
+    }
+    // 设置导航栏激活锚点
+    let scrollTop = obj.scrollTop + this.data.statusBarHeight + 50
+    if (scrollTop >= this.data.targetTop.detail) {
+      activeTarget = 'detail'
+    } else if (scrollTop >= this.data.targetTop.recom) {
+      activeTarget = 'recom'
+    } else {
+      activeTarget = 'goods'
     }
     this.setData({
-      navbarOpacity: opacity
+      navbarOpacity: opacity,
+      activeMenu: activeTarget
     })
   },
   // swiper 滑动事件处理
@@ -256,6 +279,51 @@ Page({
         moveProgress: moveProgress
       })
     }).exec()
+  },
+  // 获取导航锚点距离顶部距离
+  getTargetTop: function () {
+    let query = this.createSelectorQuery()
+    let _this = this
+    query.select('#goodsTarget').boundingClientRect()
+    query.select('#recomTarget').boundingClientRect()
+    query.select('#detailTarget').boundingClientRect()
+    query.exec(res => {
+      _this.setData({
+        'targetTop.goods': res[0].top,
+        'targetTop.recom': res[1].top,
+        'targetTop.detail': res[2].top
+      })
+    })
+  },
+  // 打开优惠详情上拉框
+  openDiscountDialog: function () {
+    this.setData({
+      discountDialogFlag: true
+    })
+  },
+  // 关闭优惠详情上拉框
+  closeDiscountDialog: function () {
+    this.setData({
+      discountDialogFlag: false
+    })
+  },
+  // 返回上一页
+  toBack: function () {
+    wx.navigateBack()
+  },
+  // 返回主页
+  toHome: function () {
+    wx.switchTab({
+      url: '../../pages/index/index'
+    })
+  },
+  // 定位到目标target
+  toTarget (e) {
+    let menu = e.currentTarget.dataset.menu
+    wx.pageScrollTo({
+      scrollTop: this.data.targetTop[menu],
+      duration: 300
+    })
   },
   // 自由数据
   customData: {

@@ -55,6 +55,13 @@
       "unicode_decimal": 58959
     },
     {
+      "icon_id": "1397992",
+      "name": "Down",
+      "font_class": "arrow-down",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
       "icon_id": "1471833",
       "name": "close",
       "font_class": "guanbi",
@@ -165,6 +172,13 @@
       "font_class": "dingwei",
       "unicode": "e632",
       "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "11741014",
+      "name": "arrow_up",
+      "font_class": "arrow-up",
+      "unicode": "e684",
+      "unicode_decimal": 59012
     }
   ]
 }

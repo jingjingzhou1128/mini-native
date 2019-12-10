@@ -2,68 +2,71 @@
 <view class="container">
   <view class="navbar" style="padding-top: {{statusBarHeight}}px;background: rgba(255, 255, 255, {{navbarOpacity}});">
     <view class="nav-left">
-      <view>
+      <view bindtap="toBack">
         <icon class="iconfont icon-left"></icon>
       </view>
-      <view>
+      <view bindtap="toHome">
         <icon class="iconfont icon-zhuye"></icon>
       </view>
     </view>
     <view class="nav-menu" style="opacity: {{navbarOpacity}};">
-      <view class="menu-item">商品</view>
-      <view class="menu-item">推荐</view>
-      <view class="menu-item">详情</view>
+      <view class="menu-item {{activeMenu === 'goods' ? 'active' : ''}}" bindtap="toTarget" data-menu="goods"><text>商品</text></view>
+      <view class="menu-item {{activeMenu === 'recom' ? 'active' : ''}}" bindtap="toTarget" data-menu="recom"><text>推荐</text></view>
+      <view class="menu-item {{activeMenu === 'detail' ? 'active' : ''}}" bindtap="toTarget" data-menu="detail"><text>详情</text></view>
     </view>
   </view>
 
-  <view class="swiper-wrapper" style="padding-top: {{statusBarHeight}}px;">
-    <swiper
-      autoplay="{{true}}"
-      interval="{{5000}}"
-      bindchange="handlerSwiper">
-      <block wx:for="{{swiper}}" wx:key="{{index}}">
-        <swiper-item>
-          <view class="swiper-item">
-            <image src="{{item.src}}" mode="widthFix"></image>
+  <view id="goodsTarget">
+    <view class="swiper-wrapper" style="padding-top: {{statusBarHeight}}px;">
+      <swiper
+        autoplay="{{true}}"
+        interval="{{5000}}"
+        bindchange="handlerSwiper">
+        <block wx:for="{{swiper}}" wx:key="{{index}}">
+          <swiper-item>
+            <view class="swiper-item">
+              <image src="{{item.src}}" mode="widthFix"></image>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <text class="swiper-index">{{swiperIndex}}/{{swiper.length}}</text>
+    </view>
+
+    <view class="intro-wrapper">
+      <view class="title">新疆阿克苏苹果4个680g起</view>
+      <view class="intro">蜜汁甜 再一次回味初恋</view>
+      <view class="intro-bottom">
+        <view class="price">
+          <view class="sale-price"><text class="text-danger">￥</text><text class="text-danger">12.9</text><text>/份</text></view>
+          <text class="old-price">￥19.9</text>
+        </view>
+        <text class="sale-numb">已售 99416</text>
+      </view>
+    </view>
+
+    <van-cell title="配送" value="最快今天13:06-14:06送达，实付满39包邮" size="large" border="{{false}}" custom-class="cell-item"/>
+
+    <van-cell title="优惠" size="large" border="{{false}}" custom-class="cell-item" is-link="{{true}}" bind:click="openDiscountDialog">
+      <view class="cell-item-value">
+        <view class="discount-type">
+          <text class="type">满件</text>
+          <view class="discount-list">
+            <text>满4件，总价49元，不与商品券叠加使用</text>
           </view>
-        </swiper-item>
-      </block>
-    </swiper>
-    <text class="swiper-index">{{swiperIndex}}/{{swiper.length}}</text>
-  </view>
-
-  <view class="intro-wrapper">
-    <view class="title">新疆阿克苏苹果4个680g起</view>
-    <view class="intro">蜜汁甜 再一次回味初恋</view>
-    <view class="intro-bottom">
-      <view class="price">
-        <view class="sale-price"><text class="text-danger">￥</text><text class="text-danger">12.9</text><text>/份</text></view>
-        <text class="old-price">￥19.9</text>
-      </view>
-      <text class="sale-numb">已售 99416</text>
-    </view>
-  </view>
-
-  <van-cell title="配送" value="最快今天13:06-14:06送达，实付满39包邮" size="large" border="{{false}}" custom-class="cell-item"/>
-
-  <van-cell title="优惠" size="large" border="{{false}}" custom-class="cell-item" is-link="{{true}}">
-    <view class="cell-item-value">
-      <view class="discount-type">
-        <text class="type">满件</text>
-        <view class="discount-list">
-          <text>满4件，总价49元，不与商品券叠加使用</text>
+        </view>
+        <view class="discount-type">
+          <text class="type">红包</text>
+          <view class="packet-list">
+            <text>满59元减5</text>
+          </view>
         </view>
       </view>
-      <view class="discount-type">
-        <text class="type">红包</text>
-        <view class="packet-list">
-          <text>满59元减5</text>
-        </view>
-      </view>
-    </view>
-  </van-cell>
+    </van-cell>
+  </view>
+  
 
-  <view class="recom-wrapper panel">
+  <view class="recom-wrapper panel" id="recomTarget">
     <view class="panel-header">
       <text class="header-title">推荐商品</text>
     </view>
@@ -89,21 +92,44 @@
     <progress percent="{{moveProgress}}" active active-mode="forwards" border-radius="{{3}}" stroke-width="{{4}} " activeColor="#f53e5d" backgroundColor="#ddd" duration="{{10}}"/>
   </view>
 
-  <view class="goods-detail panel">
+  <view class="goods-detail panel" id="detailTarget">
     <view class="panel-header">
       <text class="header-title">商品详情</text>
     </view>
     <view class="goods-detail-content">
-      <van-cell-group>
-        <van-cell title="产地" value="中国" custom-class="cell-item" title-width="50px"/>
-        <van-cell title="规格" value="1袋" custom-class="cell-item" title-width="50px"/>
-        <van-cell title="重量" value="110g" custom-class="cell-item" title-width="50px"/>
-        <van-cell title="包装" value="袋" custom-class="cell-item" title-width="50px"/>
-        <van-cell title="保质期" value="365天" custom-class="cell-item" title-width="50px"/>
-        <van-cell title="贮存方式" value="冷冻" custom-class="cell-item" title-width="50px"/>
+      <van-cell-group border="{{false}}">
+        <van-cell title="产地" value="中国" custom-class="cell-item" title-width="50px" border="{{false}}"/>
+        <van-cell title="规格" value="1袋" custom-class="cell-item" title-width="50px" border="{{false}}"/>
+        <van-cell title="重量" value="110g" custom-class="cell-item" title-width="50px" border="{{false}}"/>
+        <van-cell title="包装" value="袋" custom-class="cell-item" title-width="50px" border="{{false}}"/>
+        <van-cell title="保质期" value="365天" custom-class="cell-item" title-width="50px" border="{{false}}"/>
+        <van-cell title="贮存方式" value="冷冻" custom-class="cell-item" title-width="50px" border="{{false}}"/>
       </van-cell-group>
     </view>
   </view>
+
+  <van-action-sheet show="{{ discountDialogFlag }}" bind:close="closeDiscountDialog">
+    <view class="sheet-header">
+      <text class="header-title">优惠</text>
+      <icon class="iconfont icon-guanbi btn-close" bindtap="closeDiscountDialog"></icon>
+    </view>
+    <view class="sheet-content">
+      <view class="discount-type">
+        <text class="type">满件</text>
+        <view class="discount-list">
+          <text>满4件，总价49元，不与商品券叠加使用</text>
+          <text>满4件，总价49元，不与商品券叠加使用</text>
+        </view>
+      </view>
+      <view class="discount-type">
+        <text class="type">红包</text>
+        <view class="packet-list">
+          <text>满59元减5</text>
+          <text>满59元减5</text>
+        </view>
+      </view>
+    </view>
+  </van-action-sheet>
 
   <van-goods-action>
     <view class="btn-cat">

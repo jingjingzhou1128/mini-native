@@ -1,7 +1,4 @@
 /* pages/search/search.wxss */
-.container {
-  background: #f5f5f5;
-}
 .search-wrapper {
   padding: 10px;
   font-size: 13px;

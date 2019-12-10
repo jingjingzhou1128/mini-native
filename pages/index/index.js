@@ -182,6 +182,14 @@ Page({
       isSticky: (obj.scrollTop + 44) > this.data.stickyTop
     })
   },
+  /**
+   * Page event handler function--Called when user drop down
+   */
+  onPullDownRefresh: function () {
+    setTimeout(function () {
+      wx.stopPullDownRefresh()
+    }, 2000)
+  },
   // 初始化商品分类距离顶部距离
   initStickyTop () {
     let query = wx.createSelectorQuery()

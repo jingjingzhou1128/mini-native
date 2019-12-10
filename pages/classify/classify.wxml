@@ -1,2 +1,39 @@
 <!--pages/classify/classify.wxml-->
-<text>pages/classify/classify.wxml</text>
+<view class="container">
+  <!-- search -->
+  <view class="search-wrapper">
+    <navigator class="to-search" url="../../pages/search/search">
+      <icon class="iconfont icon-sousuo"></icon>
+      <text>智利车厘子J级29.9</text>
+    </navigator>
+  </view>
+
+  <!-- content -->
+  <view class="main">
+    <!-- classify -->
+    <scroll-view class="classify" scroll-y="true">
+      <view wx:for="{{classifyList}}" 
+        wx:key="index" 
+        class="menu-item {{activeMenu === item.name ? 'active' : ''}}"
+        data-menu="{{item.name}}"
+        bindtap="onTapMenu">
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+    <!-- goods -->
+    <scroll-view class="goods" scroll-y="true">
+      <view class="image-wrapper">
+        <image src="../../assets/images/swiper-1.jpg" mode="widthFix"></image>
+      </view>
+      <view class="classify-scroll-wrapper">
+        <scroll-view scroll-x="true" class="classify-scroll">
+          <view wx:for="{{subClassifyList}}" wx:key="{{index}}" class="tab-item {{activeSubClassify === item.name ? 'active' : ''}}">{{item.name}}</view>
+          <view style="width: 40px;display: inline-block;height: 20px;"></view>
+        </scroll-view>
+        <view class="classify-all">
+          <icon class="iconfont icon-arrow-down"></icon>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
