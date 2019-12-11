@@ -247,7 +247,7 @@
   font-size: 14px;
 }
 .recom-wrapper movable-area {
-  height: 203px;
+  height: 210px;
 }
 .recom-wrapper .recom-content {
   display: flex;
@@ -297,18 +297,26 @@
   font-size: 13px;
 }
 .recom-content .btn-shop {
-  background: #f53e5d;
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  text-align: center;
+  position: relative;
+}
+.recom-content .btn-shop text {
+  position: absolute;
+  display: block;
+  font-size: 10px;
   color: #fff;
+  width: 10px;
+  height: 10px;
+  line-height: 10px;
+  text-align: center;
+  background: #ff3022;
+  top: -5px;
+  right: -5px;
+  border: 2px solid #fff;
+  border-radius: 50%;
 }
 .recom-content .btn-shop icon {
-  font-size: 12px;
-  font-weight: 800;
-  margin-top: -10px;
-  vertical-align: top;
+  font-size: 20px;
+  color: #f53e5d;
 }
 .recom-wrapper progress {
   width: 25px;

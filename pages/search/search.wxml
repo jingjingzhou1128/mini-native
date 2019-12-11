@@ -23,7 +23,7 @@
 
   <block wx:if="{{isSearching}}">
     <view class="search-result" wx:if="{{isLoading || goodsList.length > 0}}">
-      <goods-list goodsList="{{goodsList}}"></goods-list>
+      <goods-list goodsList="{{goodsList}}" bindaddcat="addCat"></goods-list>
     </view>
     <block wx:else>
       <view class="empty-content">
@@ -33,7 +33,7 @@
         <view class="header">
           <text class="title">推荐商品</text>
         </view>
-        <goods-list goodsList="{{recomGoodsList}}"></goods-list>
+        <goods-list goodsList="{{recomGoodsList}}" bindaddcat="addRecomCat"></goods-list>
       </view>
     </block>
   </block>

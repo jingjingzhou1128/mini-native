@@ -31,121 +31,141 @@ Page({
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 0
       },
       {
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 0
       }
     ],
     // 推荐商品移动进度
@@ -323,6 +343,13 @@ Page({
     wx.pageScrollTo({
       scrollTop: this.data.targetTop[menu],
       duration: 300
+    })
+  },
+  // 添加购物车
+  handlerAddCat(e) {
+    let index = e.currentTarget.dataset.index
+    this.setData({
+      [`recomList[${index}].catNumb`]: this.data.recomList[index].catNumb + 1
     })
   },
   // 自由数据

@@ -214,7 +214,8 @@ Page({
         src: '../../assets/images/fruit.png',
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
-        price: 33.9
+        price: 33.9,
+        catNumb: 1
       })
     }
     this.setData({
@@ -284,6 +285,13 @@ Page({
         isLoading: false
       })
     }, 2000)
+  },
+  // 添加到购物车
+  addCat: function (e) {
+    let index = e.detail.index
+    this.setData({
+      [`goodsList[${index}].catNumb`]: this.data.goodsList[index].catNumb + 1
+    })
   },
   // 自由数据
   customData: {

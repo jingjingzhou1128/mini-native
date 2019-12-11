@@ -14,24 +14,60 @@
     <scroll-view class="classify" scroll-y="true">
       <view wx:for="{{classifyList}}" 
         wx:key="index" 
-        class="menu-item {{activeMenu === item.name ? 'active' : ''}}"
-        data-menu="{{item.name}}"
+        class="menu-item {{activeMenu === item.value ? 'active' : ''}}"
+        data-menu="{{item.value}}"
         bindtap="onTapMenu">
         <text>{{item.name}}</text>
       </view>
     </scroll-view>
     <!-- goods -->
-    <scroll-view class="goods" scroll-y="true">
+    <scroll-view class="goods" scroll-y="true" bindscrolltolower="handlerScrolltolower" bindscroll="handlerScroll">
       <view class="image-wrapper">
         <image src="../../assets/images/swiper-1.jpg" mode="widthFix"></image>
       </view>
-      <view class="classify-scroll-wrapper">
-        <scroll-view scroll-x="true" class="classify-scroll">
-          <view wx:for="{{subClassifyList}}" wx:key="{{index}}" class="tab-item {{activeSubClassify === item.name ? 'active' : ''}}">{{item.name}}</view>
+      <view class="classify-scroll-wrapper {{isSticky ? 'sticky' : ''}}">
+        <scroll-view scroll-x="true" class="classify-scroll" scroll-into-view="classify-{{activeSubClassify}}">
+          <view wx:for="{{subClassifyList}}" wx:key="{{index}}" data-classify="{{item.value}}" id="classify-{{item.value}}" class="tab-item {{activeSubClassify === item.value ? 'active' : ''}}" bindtap="onTapClassify">{{item.name}}</view>
           <view style="width: 40px;display: inline-block;"></view>
         </scroll-view>
-        <view class="classify-all">
+        <view class="classify-all" bindtap="openOverlay">
           <icon class="iconfont icon-arrow-down"></icon>
+        </view>
+      </view>
+      <view class="goods-list">
+        <navigator class="goods-item" wx:for="{{goodsList}}" wx:key="index" url="../../pages/goodsDetail/index" hover-class="none">
+          <view class="img-wrapper">
+            <image src="{{item.src}}" mode="widthFix"></image>
+          </view>
+          <view class="item-right">
+            <view class="info">
+              <view class="title">{{item.title}}</view>
+              <view class="desc">{{item.desc}}</view>
+            </view>
+            <view class="bottom">
+              <text class="price">¥{{item.price}}</text>
+              <view class="btn-shop">
+                <block wx:if="{{item.catNumb > 0}}">
+                  <icon class="iconfont icon-jianhao" catchtap="handlerReduceCat" data-index="{{index}}"></icon>
+                  <text>{{item.catNumb}}</text>
+                </block>
+                <icon class="iconfont icon-jiahao" catchtap="handlerAddCat" data-index="{{index}}"></icon>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+      <view class="loading-tip" wx:if="{{loadStatus === 0}}">加载中...</view>
+      <view class="bottom-tip" wx:elif="{{loadStatus === 2}}">我是有底线的～</view>
+      <view wx:if="{{ showOverlay }}" class="classify-overlay" bindtap="closeOverlay">
+        <view class="overlay-content">
+          <view class="overlay-header">
+            <text class="header-title">全部分类</text>
+            <view class="classify-thumb"><icon class="iconfont icon-arrow-up"></icon></view>
+          </view>
+          <view class="classify-list">
+            <view wx:for="{{subClassifyList}}" wx:key="{{index}}" data-classify="{{item.value}}" class="tab-item {{activeSubClassify === item.value ? 'active' : ''}}" bindtap="onTapClassify">{{item.name}}</view>
+          </view>
         </view>
       </view>
     </scroll-view>

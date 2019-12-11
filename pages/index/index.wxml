@@ -65,24 +65,7 @@
       </movable-view>
     </movable-area>
     <block wx:if="{{!isLoading}}">
-      <!-- <view class="goods-list">
-        <view class="goods-item" wx:for="{{goodsList}}" wx:key="index">
-          <view class="img-wrapper">
-            <image src="{{item.src}}" mode="widthFix"></image>
-          </view>
-          <view class="info">
-            <view class="title">{{item.title}}</view>
-            <view class="desc">{{item.desc}}</view>
-          </view>
-          <view class="bottom">
-            <text class="price">¥{{item.price}}</text>
-            <view class="btn-shop">
-              <icon class="iconfont icon-jiahao"></icon>
-            </view>
-          </view>
-        </view>
-      </view> -->
-      <goods-list goodsList="{{goodsList}}"></goods-list>
+      <goods-list goodsList="{{goodsList}}" bindaddcat="addCat"></goods-list>
       <view class="bottom-tip" wx:if="{{loadFinish}}">我是有底线的～</view>
     </block>
     <view wx:else class="loading-wrapper" style="height:{{windowHeight}}px;">
