@@ -45,7 +45,7 @@
     </view>
     <movable-area style="width: 100%;" id="classifyMoveWrap">
       <movable-view style="width: 200%;" class="classify-content" direction="horizontal" bindchange="handlerMove" id="classifyMove">
-        <view class="classify-item" wx:for="{{classifyList}}" wx:key="{{index}}">
+        <view class="classify-item" wx:for="{{classifyList}}" wx:key="{{index}}" data-value="{{item.value}}" bind:tap="toClassify">
           <view class="image-wrapper">
             <image src="{{item.src}}" mode="widthFix"></image>
           </view>
@@ -65,7 +65,7 @@
       </movable-view>
     </movable-area>
     <block wx:if="{{!isLoading}}">
-      <goods-list goodsList="{{goodsList}}" bindaddcat="addCat"></goods-list>
+      <goods-list goodsList="{{goodsList}}" bindaddcat="addCat" catAnimation="true"></goods-list>
       <view class="bottom-tip" wx:if="{{loadFinish}}">我是有底线的～</view>
     </block>
     <view wx:else class="loading-wrapper" style="height:{{windowHeight}}px;">

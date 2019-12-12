@@ -5,7 +5,9 @@
       <view class="img-wrapper">
         <image src="{{item.src}}" mode="widthFix"></image>
       </view>
-      <view class="to-cat" animation="{{animationIndex === index ? animationData : null}}" style="background-image: url({{item.src}})"></view>
+      <block wx:if="{{catAnimation}}">
+        <view class="to-cat goods{{index}}" animation="{{animationIndex === index ? animationData : null}}" style="background-image: url({{item.src}})"></view>
+      </block>
     </view>
     <view class="info">
       <view class="title">{{item.title}}</view>

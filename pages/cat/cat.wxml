@@ -1,2 +1,22 @@
 <!--pages/cat/cat.wxml-->
-<text>pages/cat/cat.wxml</text>
+<view class="container">
+  <view class="operate-wrapper">
+    <view class="location">
+      <icon class="iconfont icon-dingwei"></icon>
+      <text>购物车</text>
+    </view>
+    <text class="btn-remove">删除</text>
+  </view>
+  <view class="panel">
+    <view class="panel-header">
+      <van-checkbox value="true" bind:change="" icon-size="14" checked-color="#f53e5d">极速达</van-checkbox>
+      <view class="btn-discount">
+        <text>可用优惠券</text>
+        <icon class="iconfont icon-left"></icon>
+      </view>
+    </view>
+    <!-- <van-checkbox-group value="" bind:change="">
+
+    </van-checkbox-group> -->
+  </view>
+</view>

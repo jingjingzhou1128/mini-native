@@ -1,3 +1,5 @@
+const app = getApp()
+
 // pages/classify/classify.js
 Page({
 
@@ -6,8 +8,12 @@ Page({
    */
   data: {
     // 激活菜单
-    activeMenu: '1',
+    activeMenu: '0',
     classifyList: [
+      {
+        name: '全部',
+        value: '0'
+      },
       {
         name: '时令水果',
         value: '1'
@@ -90,28 +96,32 @@ Page({
    * Lifecycle function--Called when page is initially rendered
    */
   onReady: function () {
-
+    console.log('ready')
   },
 
   /**
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    console.log('show')
+    this.setData({
+      activeMenu: app.globalData.classifyValue || this.data.activeMenu
+    })
+    delete app.globalData.classifyValue
   },
 
   /**
    * Lifecycle function--Called when page hide
    */
   onHide: function () {
-
+    console.log('hide')
   },
 
   /**
    * Lifecycle function--Called when page unload
    */
   onUnload: function () {
-
+    console.log('unload')
   },
 
   /**

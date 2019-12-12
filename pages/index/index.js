@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-// const app = getApp()
+const app = getApp()
 // const createRecycleContext = require('../../components/miniprogram-recycle-view/index.js')
 
 Page({
@@ -27,83 +27,103 @@ Page({
     classifyList: [
       {
         src: '../../assets/images/fruit.png',
-        name: '时令水果'
+        name: '时令水果',
+        value: '1'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '新鲜蔬菜'
+        name: '新鲜蔬菜',
+        value: '1'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '肉蛋'
+        name: '肉蛋',
+        value: '1'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '水产海鲜'
+        name: '水产海鲜',
+        value: '1'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '安心乳品'
+        name: '安心乳品',
+        value: '1'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '酒饮零食'
+        name: '酒饮零食',
+        value: '1'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '优鲜超市'
+        name: '优鲜超市',
+        value: '1'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '优鲜菜场'
+        name: '优鲜菜场',
+        value: '1'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '0元领'
+        name: '0元领',
+        value: '1'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '速食粮油'
+        name: '速食粮油',
+        value: '1'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '时令水果'
+        name: '时令水果',
+        value: '2'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '新鲜蔬菜'
+        name: '新鲜蔬菜',
+        value: '2'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '肉蛋'
+        name: '肉蛋',
+        value: '2'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '水产海鲜'
+        name: '水产海鲜',
+        value: '2'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '安心乳品'
+        name: '安心乳品',
+        value: '2'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '酒饮零食'
+        name: '酒饮零食',
+        value: '2'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '优鲜超市'
+        name: '优鲜超市',
+        value: '2'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '优鲜菜场'
+        name: '优鲜菜场',
+        value: '2'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '0元领'
+        name: '0元领',
+        value: '2'
       },
       {
         src: '../../assets/images/fruit.png',
-        name: '速食粮油'
+        name: '速食粮油',
+        value: '2'
       }
     ],
     // 商品分类列表
@@ -215,7 +235,7 @@ Page({
         title: '湾仔码头三鲜水饺300g',
         desc: '瞧这一个个白小胖 可爱诱人',
         price: 33.9,
-        catNumb: 1
+        catNumb: 0
       })
     }
     this.setData({
@@ -224,10 +244,9 @@ Page({
   },
   // 获取屏幕可用高度
   getScreenHeight () {
-    console.log(wx.getSystemInfoSync())
-    let systemInfo = wx.getSystemInfoSync()
+    // let systemInfo = wx.getSystemInfoSync()
     this.setData({
-      windowHeight: systemInfo.windowHeight
+      windowHeight: app.globalData.systemInfo.windowHeight
     })
   },
   // 获取移动进度
@@ -291,6 +310,14 @@ Page({
     let index = e.detail.index
     this.setData({
       [`goodsList[${index}].catNumb`]: this.data.goodsList[index].catNumb + 1
+    })
+  },
+  // 跳转到分类
+  toClassify: function (e) {
+    let value = e.currentTarget.dataset.value
+    app.globalData.classifyValue = value
+    wx.switchTab({
+      url: '../../pages/classify/classify',
     })
   },
   // 自由数据
