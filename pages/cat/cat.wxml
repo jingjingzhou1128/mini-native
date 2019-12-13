@@ -1,5 +1,5 @@
 <!--pages/cat/cat.wxml-->
-<view class="container">
+<view class="container {{isSticky ? 'sticky' : ''}}">
   <view class="operate-wrapper">
     <view class="location">
       <icon class="iconfont icon-dingwei"></icon>
@@ -7,16 +7,60 @@
     </view>
     <text class="btn-remove">删除</text>
   </view>
+
   <view class="panel">
     <view class="panel-header">
-      <van-checkbox value="true" bind:change="" icon-size="14" checked-color="#f53e5d">极速达</van-checkbox>
+      <text class="title">极速达</text>
+      <!-- <van-checkbox value="{{allSelected}}" bind:change="handlerAllChange" icon-size="14" checked-color="#f53e5d"></van-checkbox> -->
       <view class="btn-discount">
         <text>可用优惠券</text>
-        <icon class="iconfont icon-left"></icon>
+        <icon class="iconfont icon-arrow-right"></icon>
       </view>
     </view>
-    <!-- <van-checkbox-group value="" bind:change="">
-
-    </van-checkbox-group> -->
+    <!-- <van-checkbox-group value="{{selectedGoods}}" bind:change="handlerSelectChange" class="goods-list"> -->
+    <view class="goods-list">
+      <navigator class="goods-item" wx:for="{{goodsList}}" wx:key="id" data-id="{{item.id}}" url="../../pages/goodsDetail/index" hover-class="none" bindlongtap="handlerLongTap">
+        <van-checkbox value="{{item.isCheck}}" catchtap="handlerTapCheck" bind:change="handlerCheckChange" data-id="{{item.id}}" name="{{ item.id }}" icon-size="14" checked-color="#f53e5d"></van-checkbox>
+        <view class="img-wrapper">
+          <image src="{{item.src}}" mode="widthFix"></image>
+        </view>
+        <view class="item-right">
+          <view class="info">
+            <view class="title">{{item.title}}{{item.id}}</view>
+            <view class="desc">{{item.desc}}</view>
+          </view>
+          <view class="bottom">
+            <text class="price">¥{{item.price}}</text>
+            <view class="btn-shop">
+              <block wx:if="{{item.catNumb > 0}}">
+                <icon class="iconfont icon-jianhao" catchtap="handlerReduceCat" data-index="{{index}}" data-id="{{item.id}}"></icon>
+                <text>{{item.catNumb}}</text>
+              </block>
+              <icon class="iconfont icon-jiahao" catchtap="handlerAddCat" data-index="{{index}}"></icon>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <!-- </van-checkbox-group> -->
   </view>
+
+  <view class="recom-goods">
+    <view class="header">
+      <text class="title">推荐商品</text>
+    </view>
+    <goods-list goodsList="{{recomList}}" bindaddcat="addRecomCat"></goods-list>
+  </view>
+
+  <van-submit-bar
+    price="{{selectedPrice}}"
+    button-text="去结算({{selectedNumb}})"
+    disabled="{{selectedNumb > 0 ? false : true}}"
+    bind:submit="sumitOrder"
+    custom-class="submit-bar">
+    <view class="select-all">
+      <van-checkbox value="{{allSelected}}" bind:change="handlerAllChange" icon-size="14" checked-color="#f53e5d"></van-checkbox>
+      <text>全选</text>
+    </view>
+  </van-submit-bar>
 </view>

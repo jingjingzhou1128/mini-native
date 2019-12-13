@@ -1,4 +1,7 @@
 /* pages/cat/cat.wxss */
+.container {
+  padding-bottom: 60px;
+}
 .operate-wrapper {
   display: flex;
   align-items: center;
@@ -16,6 +19,16 @@
   color: #6b6b6b;
   font-size: 12px;
 }
+.container.sticky {
+  padding-top: 40px;
+}
+.container.sticky .panel-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+}
 .panel {
   margin: 10px 15px;
   background: #fff;
@@ -27,6 +40,14 @@
   justify-content: space-between;
   border-bottom: 1px solid #eee;
   padding: 10px;
+  background: #fff;
+}
+.panel-header .title {
+  font-size: 14px;
+  font-weight: 600;
+  font-style: italic;
+  color: #f53e5d;
+  flex: 1;
 }
 
 /* .van-checkbox .van-checkbox__icon--checked {
@@ -35,16 +56,6 @@
   line-height: 15px;
   background-color: #f53e5d;
 } */
-.van-checkbox {
-  display: flex;
-  align-items: center;
-}
-.van-checkbox .van-checkbox__label {
-  font-size: 14px;
-  font-weight: 600;
-  font-style: italic;
-  color: #f53e5d;
-}
 
 .btn-discount {
   display: flex;
@@ -61,4 +72,103 @@
   font-size: 10px;
   height: inherit;
   margin-top: -22px;
+}
+
+.goods-list .goods-item {
+  /* width: 49%; */
+  background: #fff;
+  /* border-radius: 5px; */
+  padding: 10px;
+  box-sizing: border-box;
+  /* margin-bottom: 8px; */
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.goods-list .img-wrapper {
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  /* background: #f5f5f5; */
+  margin: 0 10px;
+}
+.goods-list .img-wrapper image {
+  width: 100%;
+  height: auto;
+}
+.goods-list .item-right {
+  flex: 1;
+}
+.goods-list .info {
+  height: 47px;
+  overflow: hidden;
+}
+.goods-list .title {
+  font-size: 13px;
+}
+.goods-list .desc {
+  font-size: 10px;
+  color: #6b6b6b;
+}
+.goods-list .goods-item .bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.goods-list .bottom .price {
+  color: #f53e5d;
+  font-size: 13px;
+}
+.goods-list .btn-shop text {
+  display: inline-block;
+  padding: 0 5px;
+  text-align: center;
+  font-size: 12px;
+}
+.goods-list .btn-shop icon {
+  font-size: 20px;
+  color: #f53e5d;
+}
+
+.submit-bar {
+  height: 60px;
+  padding: 10px 25px;
+  box-sizing: border-box;
+  box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.06);
+}
+.submit-bar .van-submit-bar__bar {
+  height: 40px
+}
+.submit-bar .van-submit-bar__text text {
+  color: #f53e5d;
+}
+.submit-bar .van-submit-bar__text > text:first-child {
+  color: #6b6b6b;
+  font-size: 13px;
+}
+.submit-bar .van-button {
+  height: 40px;
+  background: #f53e5d;
+  border-radius: 5px;
+  border-color: #f53e5d;
+}
+.select-all {
+  display: flex;
+  align-items: center;
+}
+.select-all text {
+  margin-left: 5px;
+}
+
+.recom-goods {
+  padding: 10px;
+  margin-top: 20px;
+}
+.recom-goods .header {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.recom-goods .header .title {
+  font-size: 15px;
 }

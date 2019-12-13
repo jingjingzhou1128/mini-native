@@ -180,6 +180,7 @@ Page({
     isLoading: false,
     // 窗口可用高度
     windowHeight: 0
+    // showAuthor: true
   },
   // 监听页面加载回调函数
   onLoad: function () {
@@ -320,6 +321,14 @@ Page({
       url: '../../pages/classify/classify',
     })
   },
+  // getUserInfo (e) {
+  //   console.log(e)
+  // },
+  // onAuthorClose (e) {
+  //   this.setData({
+  //     showAuthor: false
+  //   })
+  // },
   // 自由数据
   customData: {
     // 商品分类移动定时器索引
