@@ -232,12 +232,20 @@ Page({
     this.setData({
       [`goodsList[${index}].catNumb`]: this.data.goodsList[index].catNumb - 1
     })
+    // wx.setTabBarBadge({
+    //   index: 2,
+    //   text: (--app.globalData.catData.sum).toString()
+    // })
   },
   // 添加购物车
   handlerAddCat (e) {
     let index = e.currentTarget.dataset.index
     this.setData({
-      [`goodsList[${index}].catNumb`]: this.data.goodsList[index].catNumb + 1
+      [`goodsList[${index}].catNumb`]: this.data.goodsList[index].catNumb + 1,
     })
+    // wx.setTabBarBadge({
+    //   index: 2,
+    //   text: (++app.globalData.catData.sum).toString()
+    // })
   }
 })

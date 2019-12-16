@@ -288,5 +288,7 @@ Page({
     this.setData({
       [`recomList[${index}].catNumb`]: this.data.recomList[index].catNumb + 1
     })
-  }
+  },
+  // 空方法
+  none () {}
 })

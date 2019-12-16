@@ -211,6 +211,13 @@ Page({
       wx.stopPullDownRefresh()
     }, 2000)
   },
+  // // 点击tab时触发
+  // onTabItemTap (tab) {
+  //   wx.setTabBarBadge({
+  //     index: 2,
+  //     text: (++app.globalData.catData.sum).toString()
+  //   })
+  // },
   // 初始化商品分类距离顶部距离
   initStickyTop () {
     let query = wx.createSelectorQuery()

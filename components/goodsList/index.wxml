@@ -1,13 +1,8 @@
 <!--components/goodsList/index.wxml-->
 <view class="goods-list">
   <navigator class="goods-item" wx:for="{{goodsList}}" wx:key="index" url="../../pages/goodsDetail/index" hover-class="none">
-    <view class="goods-img">
-      <view class="img-wrapper">
-        <image src="{{item.src}}" mode="widthFix"></image>
-      </view>
-      <block wx:if="{{catAnimation}}">
-        <view class="to-cat goods{{index}}" animation="{{animationIndex === index ? animationData : null}}" style="background-image: url({{item.src}})"></view>
-      </block>
+    <view class="img-wrapper goods{{index}}">
+      <image src="{{item.src}}" mode="widthFix"></image>
     </view>
     <view class="info">
       <view class="title">{{item.title}}</view>
@@ -17,9 +12,15 @@
       <text class="price">¥{{item.price}}</text>
       <view class="btn-shop">
         <text wx-if="{{item.catNumb > 0}}">{{item.catNumb}}</text>
-        <icon class="iconfont icon-jiahao" catchtap="handlerAddCat" data-index="{{index}}"></icon>
+        <icon class="iconfont icon-jiahao" catchtap="handlerAddCat" data-index="{{index}}" data-img="{{item.src}}"></icon>
       </view>
     </view>
   </navigator>
+  <!-- background-image: url({{pointImg}}); -->
+  <view class="to-cat" style="transform: translate({{point.x}}px, {{point.y}}px) scale({{point.scale}});opacity: {{point.opacity}}">
+    <block wx:if="{{pointImg}}">
+      <image src="{{pointImg}}" mode="widthFix"></image>
+    </block>
+  </view>
   <slot></slot>
 </view>

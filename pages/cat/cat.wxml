@@ -19,7 +19,7 @@
     </view>
     <!-- <van-checkbox-group value="{{selectedGoods}}" bind:change="handlerSelectChange" class="goods-list"> -->
     <view class="goods-list">
-      <navigator class="goods-item" wx:for="{{goodsList}}" wx:key="id" data-id="{{item.id}}" url="../../pages/goodsDetail/index" hover-class="none" bindlongtap="handlerLongTap">
+      <navigator class="goods-item" wx:for="{{goodsList}}" wx:key="id" data-id="{{item.id}}" url="../../pages/goodsDetail/index" hover-class="none" bindlongpress="handlerLongTap">
         <van-checkbox value="{{item.isCheck}}" catchtap="handlerTapCheck" bind:change="handlerCheckChange" data-id="{{item.id}}" name="{{ item.id }}" icon-size="14" checked-color="#f53e5d"></van-checkbox>
         <view class="img-wrapper">
           <image src="{{item.src}}" mode="widthFix"></image>

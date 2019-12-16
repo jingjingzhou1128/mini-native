@@ -13,7 +13,7 @@
       custom-class="search-input">
       <view slot="action" bind:tap="onSearch" wx:if="{{!isSearching}}">搜索</view>
       <view slot="action" wx:else>
-        <navigator url="">
+        <navigator url="../../pages/cat/cat" open-type="switchTab" hover-class="none">
           <icon class="iconfont icon-gouwuche"></icon>
           <text class="badge">18</text>
         </navigator>

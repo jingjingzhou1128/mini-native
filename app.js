@@ -8,11 +8,6 @@ App({
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
 
-    // wx.getLaunchOptionsSync({
-    //   success: function (res) {
-    //     console.log(res)
-    //   }
-    // })
     // 检查登录态是否过期
     // wx.checkSession({
     //   success: res => {
@@ -23,22 +18,23 @@ App({
     //   }
     // })
 
-    // console.log(wx.getAccountInfoSync())
-    // wx.getUserInfo({
-    //   success: function (res) {
-    //     console.log(res)
-    //   },
-    //   fail: function (error) {
-    //     console.log("error")
-    //   }
-    // })
-
     // 登录
-    // wx.login({
-    //   success: res => {
-    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //   }
-    // })
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // 设置购物车中商品数量
+        let _this = this
+        setTimeout(function () {
+          let goodsList = _this.getUserCatInfo()
+          _this.globalData.catData.goodsList = goodsList
+          wx.setTabBarBadge({
+            index: 2,
+            text: goodsList.length.toString()
+          })
+        }, 1000)
+      }
+    })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -68,8 +64,27 @@ App({
       url: 'pages/404/404',
     })
   },
+  // 获取用户购物车列表信息
+  getUserCatInfo() {
+    let goodsList = []
+    for (let i = 0; i < 10; i++) {
+      goodsList.push({
+        id: i.toString(),
+        src: '../../assets/images/fruit.png',
+        title: `湾仔码头三鲜水饺300g${i}`,
+        desc: '瞧这一个个白小胖 可爱诱人',
+        price: 33.9,
+        catNumb: 1,
+        isCheck: true
+      })
+    }
+    return goodsList
+  },
   globalData: {
     userInfo: null,
-    systemInfo: null
+    systemInfo: null,
+    catData: {
+      goodsList: []
+    }
   }
 })
