@@ -1,0 +1,36 @@
+/* pages/pay/pay.wxss */
+.container {
+  padding: 10px 10px 60px;
+}
+.choose-location {
+  padding: 20px 10px !important;
+  border-radius: 10px !important;
+}
+.choose-location .icon-dingwei {
+  color: #aaa;
+  font-size: 20px;
+  margin-top: -4px;
+}
+.choose-location .location-label {
+  font-size: 16px;
+  color: #333;
+}
+.pay-bar .van-submit-bar__bar {
+  height: 60px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+.pay-bar .van-submit-bar__text {
+  text-align: left;
+}
+.pay-bar .van-submit-bar__price {
+  color: #f53e5d;
+  font-size: 20px;
+}
+.pay-bar .van-button {
+  border-radius: 5px;
+  height: 40px;
+  background: #f53e5d;
+  border-color: #f53e5d;
+  box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.06);
+}

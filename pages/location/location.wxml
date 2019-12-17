@@ -1,0 +1,40 @@
+<!--pages/location/location.wxml-->
+<view class="container">
+  <view class="search-wrapper">
+    <van-search 
+      value="" 
+      placeholder="请输入您的收货地址"
+      shape="round"
+      bind:search="search"
+      custom-class="search-location"
+      use-left-icon-slot
+    >
+      <view class="search-label" slot="label">
+        <text>{{rgcData.city}}</text>
+        <icon class="iconfont icon-arrow-down-full"></icon>
+      </view>
+    </van-search>
+  </view>
+  <view class="map">
+    <map 
+      id="map" 
+      longitude="{{map.longitude}}" 
+      latitude="{{map.latitude}}" 
+      scale="{{map.scale}}" 
+      controls="{{map.controls}}" 
+      bindcontroltap="controltap" 
+      markers="{{map.markers}}"
+      show-location="{{map.showLocation}}"
+      bindregionchange="regionchange"></map>
+  </view>
+  <van-radio-group value="{{rgcData.uid}}" bind:change="onRgcChange">
+    <van-cell-group>
+      <van-cell wx:for="{{recomAddress}}" wx:key="uid" clickable data-name="{{item.uid}}" bind:click="onPoiClick" use-label-slot custom-class="cell-poi">
+        <van-radio name="{{item.uid}}" slot="icon" catch:tap="none"/>
+        <view class="cell-title" slot="title">{{item.name}}</view>
+        <view class="cell-label" slot="label">{{item.addr}}</view>
+        <view class="cell-value">{{item.distance}}米</view>
+      </van-cell>
+    </van-cell-group>
+  </van-radio-group>
+</view>

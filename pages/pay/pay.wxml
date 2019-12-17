@@ -1,0 +1,21 @@
+<!--pages/pay/pay.wxml-->
+<view class="container">
+  <van-cell
+    is-link
+    link-type="navigateTo"
+    url="../../pages/location/location"
+    use-label-slot
+    custom-class="choose-location"
+  >
+    <icon class="iconfont icon-dingwei" slot="icon"></icon>
+    <view slot="label" class="location-label">点击去选择地址</view>
+  </van-cell>
+
+  <van-submit-bar
+    price="{{ 3050 }}"
+    label="待支付："
+    button-text="去支付"
+    bind:submit="pay"
+    custom-class="pay-bar"
+  />
+</view>

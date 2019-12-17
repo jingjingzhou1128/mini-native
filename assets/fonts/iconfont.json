@@ -195,6 +195,13 @@
       "unicode_decimal": 58930
     },
     {
+      "icon_id": "10971893",
+      "name": "arrow-down",
+      "font_class": "arrow-down-full",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
       "icon_id": "11741014",
       "name": "arrow_up",
       "font_class": "arrow-up",

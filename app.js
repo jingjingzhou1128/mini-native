@@ -53,6 +53,28 @@ App({
             }
           })
         }
+        // 授权获取用户位置
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success: (res) => {
+              console.log('success')
+            },
+            fail: (res) => {
+              console.log('fail')
+            }
+          })
+        }
+        // if (!res.authSetting['scope.userLocation']) {
+        //   wx.getLocation({
+        //     success: res => {
+        //       this.globalData.userLocation = res
+        //     },
+        //     fail: error => {
+        //       console.log(error)
+        //     }
+        //   })
+        // }
       }
     })
   },

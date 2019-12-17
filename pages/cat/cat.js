@@ -281,7 +281,11 @@ Page({
     // })
   },
   // 提交订单
-  sumitOrder() {},
+  sumitOrder() {
+    wx.navigateTo({
+      url: '../../pages/pay/pay',
+    })
+  },
   // 添加推荐商品到购物车
   addRecomCat (e) {
     let index = e.detail.index
