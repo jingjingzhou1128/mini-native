@@ -1,14 +1,15 @@
 <!--pages/pay/pay.wxml-->
 <view class="container">
   <van-cell
-    is-link
-    link-type="navigateTo"
-    url="../../pages/location/location"
     use-label-slot
     custom-class="choose-location"
+    bind:click="onTapLocation"
   >
     <icon class="iconfont icon-dingwei" slot="icon"></icon>
-    <view slot="label" class="location-label">点击去选择地址</view>
+    <view slot="label" class="location-label">
+      <text wx:if="{{address}}">{{address.name}}</text>
+      <text wx:else>点击去选择地址</text>
+    </view>
   </van-cell>
 
   <van-submit-bar

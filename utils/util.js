@@ -50,8 +50,21 @@ function debounce(fn, interval = 500) {
   }
 }
 
+// 查询条件编码
+function getQueryToString (data) {
+  let paramsArr = []
+  if (data instanceof Object) {
+    Object.keys(data).forEach(key => {
+      let val = data[key]
+      paramsArr.push(encodeURIComponent(key) + '=' + encodeURIComponent(val))
+    })
+  }
+  return paramsArr.join('&')
+}
+
 module.exports = {
   formatTime: formatTime,
   throttle: throttle,
-  debounce: debounce
+  debounce: debounce,
+  getQueryToString: getQueryToString
 }

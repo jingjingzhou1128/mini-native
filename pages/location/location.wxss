@@ -1,4 +1,7 @@
 /* pages/location/location.wxss */
+.container {
+  background: #fff;
+}
 .search-wrapper {
   padding: 10px;
   background: #fff;
@@ -17,11 +20,13 @@
   height: 300px;
 }
 
-.cell-poi {
+.cell-poi,
+.search-poi {
   padding: 10px;
   align-items: center;
 }
-.cell-poi .van-cell__title {
+.cell-poi .van-cell__title,
+.search-poi .van-cell__title {
   padding: 0 10px;
   flex: 1;
 }

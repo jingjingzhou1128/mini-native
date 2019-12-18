@@ -2,12 +2,13 @@
 <view class="container">
   <view class="search-wrapper">
     <van-search 
-      value="" 
+      value="{{searchValue}}" 
       placeholder="请输入您的收货地址"
       shape="round"
-      bind:search="search"
+      bind:search="onSearch"
       custom-class="search-location"
       use-left-icon-slot
+      bind:change="__searchChange"
     >
       <view class="search-label" slot="label">
         <text>{{rgcData.city}}</text>
@@ -15,26 +16,37 @@
       </view>
     </van-search>
   </view>
-  <view class="map">
-    <map 
-      id="map" 
-      longitude="{{map.longitude}}" 
-      latitude="{{map.latitude}}" 
-      scale="{{map.scale}}" 
-      controls="{{map.controls}}" 
-      bindcontroltap="controltap" 
-      markers="{{map.markers}}"
-      show-location="{{map.showLocation}}"
-      bindregionchange="regionchange"></map>
-  </view>
-  <van-radio-group value="{{rgcData.uid}}" bind:change="onRgcChange">
+
+  <block wx:if="{{recomSearchAddress.length > 0}}">
     <van-cell-group>
-      <van-cell wx:for="{{recomAddress}}" wx:key="uid" clickable data-name="{{item.uid}}" bind:click="onPoiClick" use-label-slot custom-class="cell-poi">
-        <van-radio name="{{item.uid}}" slot="icon" catch:tap="none"/>
+      <van-cell wx:for="{{recomSearchAddress}}" wx:key="uid" clickable data-name="{{item.uid}}" bind:click="onClickSearch" use-label-slot custom-class="search-poi">
         <view class="cell-title" slot="title">{{item.name}}</view>
-        <view class="cell-label" slot="label">{{item.addr}}</view>
-        <view class="cell-value">{{item.distance}}米</view>
+        <view class="cell-label" slot="label">{{item.address || item.province + item.city + item.district + item.name}}</view>
       </van-cell>
     </van-cell-group>
-  </van-radio-group>
+  </block>
+  <block wx:else>
+    <view class="map">
+      <map 
+        id="map" 
+        longitude="{{map.longitude}}" 
+        latitude="{{map.latitude}}" 
+        scale="{{map.scale}}" 
+        controls="{{map.controls}}" 
+        bindcontroltap="controltap" 
+        markers="{{map.markers}}"
+        show-location="{{map.showLocation}}"
+        bindregionchange="regionchange"></map>
+    </view>
+    <van-radio-group value="{{rgcData.uid}}" bind:change="onRgcChange">
+      <van-cell-group>
+        <van-cell wx:for="{{recomAddress}}" wx:key="uid" clickable data-name="{{item.uid}}" bind:click="onPoiClick" use-label-slot custom-class="cell-poi">
+          <van-radio name="{{item.uid}}" slot="icon" catch:tap="none"/>
+          <view class="cell-title" slot="title">{{item.name}}</view>
+          <view class="cell-label" slot="label">{{item.addr}}</view>
+          <view class="cell-value">{{item.distance}}米</view>
+        </van-cell>
+      </van-cell-group>
+    </van-radio-group>
+  </block>
 </view>

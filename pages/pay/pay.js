@@ -1,3 +1,4 @@
+const util = require('../../utils/util.js')
 // pages/pay/pay.js
 Page({
 
@@ -5,14 +6,23 @@ Page({
    * Page initial data
    */
   data: {
-
+    address: null
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    console.log(options)
+    if (Object.keys(options).length > 0) {
+      let query = {}
+      Object.keys(options).forEach(key => {
+        query[key] = decodeURIComponent(options[key])
+      })
+      this.setData({
+        address: query
+      })
+    }
   },
 
   /**
@@ -62,5 +72,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onTapLocation () {
+    let queryString = util.getQueryToString(this.data.address)
+    wx.navigateTo({
+      url: `../../pages/location/location?${queryString}`,
+    })
   }
 })
