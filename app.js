@@ -40,10 +40,10 @@ App({
               name: '观山名筑',
               uid: '92b4893932cd2228c7f50ddf',
               cityCode: 317,
-              userName: '周晶晶',
+              userName: '匿名',
               userGender: 'female',
-              phone: '17715210689',
-              addrDet: '观山名筑441-203',
+              phone: '177152101212',
+              addrDet: '观山名筑',
               tag: 'home',
               isDefault: true
             }
