@@ -9,7 +9,9 @@
     "pages/search/search",
     "pages/goodsDetail/index",
     "pages/pay/pay",
-    "pages/location/location"
+    "pages/location/location",
+    "pages/addressList/addressList",
+    "pages/addressEdit/addressEdit"
   ],
   "window": {
     "backgroundTextStyle": "dark",

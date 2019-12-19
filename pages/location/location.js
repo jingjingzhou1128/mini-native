@@ -63,6 +63,7 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    console.log(options)
     this.BMap = new bmap.BMapWX({
       ak: 'zrEND0UqaVqhRQAaMn3KGHjluFo78GLQ'
     })
@@ -219,16 +220,24 @@ Page({
   toPayPage (uid) {
     let poi = this.data.recomAddress.filter(item => item.uid === uid)
     if (poi.length > 0) {
-      let queryString = util.getQueryToString({
+      // let queryString = util.getQueryToString({
+      //   latitude: poi[0].point.y,
+      //   longitude: poi[0].point.x,
+      //   name: poi[0].name,
+      //   uid: poi[0].uid,
+      //   cityCode: this.data.rgcData.cityCode
+      // })
+      // wx.navigateTo({
+      //   url: `../../pages/pay/pay?${queryString}`,
+      // })
+      app.globalData.address = {
         latitude: poi[0].point.y,
         longitude: poi[0].point.x,
         name: poi[0].name,
         uid: poi[0].uid,
         cityCode: this.data.rgcData.cityCode
-      })
-      wx.navigateTo({
-        url: `../../pages/pay/pay?${queryString}`,
-      })
+      }
+      wx.navigateBack()
     }
   },
 
@@ -246,16 +255,24 @@ Page({
     let uid = e.currentTarget.dataset.name
     let poi = this.data.recomSearchAddress.filter(item => item.uid === uid)
     if (poi.length > 0) {
-      let queryString = util.getQueryToString({
+      // let queryString = util.getQueryToString({
+      //   latitude: poi[0].location.lat,
+      //   longitude: poi[0].location.lng,
+      //   name: poi[0].name,
+      //   uid: poi[0].uid,
+      //   cityCode: this.data.rgcData.cityCode
+      // })
+      app.globalData.address = {
         latitude: poi[0].location.lat,
         longitude: poi[0].location.lng,
         name: poi[0].name,
         uid: poi[0].uid,
         cityCode: this.data.rgcData.cityCode
-      })
-      wx.navigateTo({
-        url: `../../pages/pay/pay?${queryString}`,
-      })
+      }
+      wx.navigateBack()
+      // wx.navigateTo({
+      //   url: `../../pages/pay/pay?${queryString}`,
+      // })
     }
   },
 

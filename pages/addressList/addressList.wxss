@@ -1,0 +1,37 @@
+/* pages/addressList/addressList.wxss */
+.container {
+  padding: 10px 0;
+}
+.cell-address {
+  padding: 10px !important;
+  align-items: center;
+}
+.cell-address .van-cell__title {
+  padding: 0 10px;
+  flex: 1;
+}
+.cell-address .van-cell__value {
+  flex: unset;
+  font-size: 16px;
+}
+.cell-title {
+  font-size: 14px;
+}
+.cell-label {
+  font-size: 12px;
+}
+
+.container .van-goods-action {
+  background-color: transparent;
+}
+.btn-add {
+  margin: 10px;
+  background: #f53e5d;
+  color: #fff;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 5px;
+  font-size: 14px;
+  border: none;
+  width: 100%;
+}

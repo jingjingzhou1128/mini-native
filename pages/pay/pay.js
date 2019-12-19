@@ -1,4 +1,6 @@
-const util = require('../../utils/util.js')
+// const util = require('../../utils/util.js')
+const app = getApp()
+let isInitSelfShow = true
 // pages/pay/pay.js
 Page({
 
@@ -13,16 +15,16 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    console.log(options)
-    if (Object.keys(options).length > 0) {
-      let query = {}
-      Object.keys(options).forEach(key => {
-        query[key] = decodeURIComponent(options[key])
-      })
-      this.setData({
-        address: query
-      })
-    }
+    // console.log(options)
+    // if (Object.keys(options).length > 0) {
+    //   let query = {}
+    //   Object.keys(options).forEach(key => {
+    //     query[key] = decodeURIComponent(options[key])
+    //   })
+    //   this.setData({
+    //     address: query
+    //   })
+    // }
   },
 
   /**
@@ -36,14 +38,31 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    let addressList = app.globalData.addressList
+    let address
+    if (isInitSelfShow) {
+      address = addressList.filter(item => item.isDefault)[0]
+    } else if (app.globalData.selectedAddress) {
+      address = addressList.filter(item => item.uid === app.globalData.selectedAddress)[0]
+      app.globalData.selectedAddress = ''
+    }
+    this.setData({
+      address: address || null
+    })
+    // if (app.globalData.address) {
+    //   this.setData({
+    //     address: app.globalData.address
+    //   })
+    //   app.globalData.address = null
+    //   console.log(this.data.address)
+    // }
   },
 
   /**
    * Lifecycle function--Called when page hide
    */
   onHide: function () {
-
+    isInitSelfShow = false
   },
 
   /**
@@ -75,9 +94,10 @@ Page({
   },
 
   onTapLocation () {
-    let queryString = util.getQueryToString(this.data.address)
+    // let queryString = util.getQueryToString(this.data.address)
+    let id = this.data.address.uid || ''
     wx.navigateTo({
-      url: `../../pages/location/location?${queryString}`,
+      url: `../../pages/addressList/addressList?id=${id}`,
     })
   }
 })

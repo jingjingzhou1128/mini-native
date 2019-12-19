@@ -1,0 +1,88 @@
+/* pages/addressEdit/addressEdit.wxss */
+.container {
+  padding: 10px 0;
+}
+
+.van-cell-group {
+  padding: 0 10px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+.form-item {
+  padding: 10px 0 !important;
+  align-items: center;
+  background: #fff;
+}
+.form-item {
+  border-bottom: 1px solid #eee;
+}
+.form-item .van-cell {
+  padding: 0;
+}
+.form-item .van-cell__title {
+  width: 70px;
+  flex: unset;
+}
+.form-item .van-cell__value {
+  text-align: left;
+}
+.form-item.item-default {
+  border: none;
+}
+.form-item.item-default .van-cell__title {
+  flex: 1;
+}
+.form-item.item-default .van-cell__value {
+  flex: unset;
+}
+.form-item.item-user {
+  align-items: flex-start;
+}
+.form-item.item-user .van-field__body {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.form-item .van-tag {
+  padding: 0 5px;
+  height: 20px;
+  line-height: 20px;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  color: #333 !important;
+}
+.form-item .van-tag {
+  margin-right: 10px;
+}
+.form-item .van-tag::after {
+  display: none;
+}
+.form-item .active .van-tag {
+  color: #f53e5d !important;
+  border-color: #f53e5d;
+}
+.form-item van-radio-group {
+  display: flex;
+}
+.form-item .form-item-radio {
+  margin-right: 10px;
+  padding-top: 10px;
+}
+.form-item .form-item-radio .van-radio__icon {
+  height: 16px;
+  width: 16px;
+  font-size: 16px;
+}
+.form-item .form-item-radio .van-icon {
+  line-height: 16px !important;
+}
+
+.btn-address {
+  display: block;
+  margin: 0 10px;
+  border: none;
+  background: #f53e5d;
+  color: #fff;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+}

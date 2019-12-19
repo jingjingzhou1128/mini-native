@@ -1,0 +1,55 @@
+<!--pages/addressEdit/addressEdit.wxml-->
+<view class="container">
+  <van-cell-group>
+    <van-cell title="收货人" border="{{false}}" custom-class="form-item item-user">
+      <van-field
+        value="{{address.userName}}"
+        placeholder="请填写收货人的姓名"
+        bind:change="changeUsername"
+        border="{{false}}"
+        input-class="form-item-input"
+      />
+      <van-radio-group value="{{address.userGender}}" bind:change="changeUsergender">
+        <van-radio name="female" custom-class="form-item-radio">女士</van-radio>
+        <van-radio name="male" custom-class="form-item-radio">先生</van-radio>
+      </van-radio-group>
+    </van-cell>
+    <van-cell title="手机号" border="{{false}}" custom-class="form-item">
+      <van-field
+        value="{{address.phone}}"
+        placeholder="请填写收货人手机号"
+        bind:change="changePhone"
+        border="{{false}}"
+        input-class="form-item-input"
+      />
+    </van-cell>
+    <van-cell title="收货地址" border="{{false}}" custom-class="form-item">
+      <van-field
+        value="{{address.name}}"
+        placeholder="点击选择收货地址"
+        disabled
+        border="{{false}}"
+        input-class="form-item-input"
+      />
+      <icon slot="right-icon" class="iconfont icon-arrow-right" bindtap="chooseLocation"></icon>
+    </van-cell>
+    <van-cell title="门牌号" border="{{false}}" custom-class="form-item">
+      <van-field
+        value="{{address.addrDet}}"
+        placeholder="详细地址"
+        bind:change="changeAddrDet"
+        border="{{false}}"
+        input-class="form-item-input"
+      />
+    </van-cell>
+    <van-cell title="标签" border="{{false}}" custom-class="form-item">
+      <van-tag plain wx:for="{{tags}}" wx:key="value" class="{{item.value === address.tag ? 'active' : ''}}" data-value="{{item.value}}" bindtap="changeTag">{{item.label}}</van-tag>
+    </van-cell>
+    <van-cell title="设为默认地址" use-label-slot custom-class="form-item item-default">
+      <view class="cell-label" slot="label">每次购物时会优先定位至该地址，方便您轻松购物</view>
+      <van-switch checked="{{address.isDefault}}" bind:change="changeIsDefault" size="16px" custom-class="form-item-switch"/>
+    </van-cell>
+  </van-cell-group>
+
+  <button class="btn-address" bindtap="saveAddress">保存并使用</button>
+</view>

@@ -1,0 +1,32 @@
+function transMale (value) {
+  switch (value) {
+    case 'female':
+      return '女士'
+    case 'male':
+      return '男士'
+    default:
+      return ''
+  }
+}
+
+function transAddressType (value) {
+  switch (value) {
+    case 'home':
+      return '家'
+    case 'company':
+      return '公司'
+    case 'school':
+      return '学校'
+    default:
+      return ''
+  }
+}
+
+module.exports = {
+  transMale: transMale,
+  transAddressType: transAddressType
+}
+// module.exports = {
+//   transMale,
+//   transAddressType
+// }
