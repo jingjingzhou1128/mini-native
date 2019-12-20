@@ -216,7 +216,7 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-    // this.getSendLocation()
+    this.getSendLocation()
     setTimeout(function () {
       wx.stopPullDownRefresh()
     }, 2000)
@@ -352,8 +352,8 @@ Page({
       setTimeout(() => {
         this.setData({
           showLocationTip: false
-        }, 5000)
-      })
+        })
+      }, 5000)
     } else {
       this.location()
     }
