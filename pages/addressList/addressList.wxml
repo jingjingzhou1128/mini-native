@@ -5,9 +5,9 @@
     <van-cell-group>
       <van-cell wx:for="{{addressList}}" wx:key="uid" clickable data-id="{{item.uid}}" bind:click="onAddressClick" use-label-slot custom-class="cell-address">
         <van-radio name="{{item.uid}}" slot="icon" catch:tap="none"/>
-        <view class="cell-title" slot="title"><text>{{item.name + item.addrDet}}</text><text>{{transData.transAddressType(item.tag)}}</text></view>
+        <view class="cell-title" slot="title"><text>{{item.name + item.addrDet}}</text><text class="tag-home">{{transData.transAddressType(item.tag)}}</text></view>
         <view class="cell-label" slot="label">{{item.userName}} {{transData.transMale(item.userGender)}} {{item.phone}}</view>
-        <view class="cell-value"><icon class="iconfont icon-arrow-right" data-id="{{item.uid}}" catchtap="editAddress"></icon></view>
+        <view class="cell-value"><icon class="iconfont icon-bianji" data-id="{{item.uid}}" catchtap="editAddress"></icon></view>
       </van-cell>
     </van-cell-group>
   </van-radio-group>

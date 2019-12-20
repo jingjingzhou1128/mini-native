@@ -25,6 +25,11 @@ Page({
     //     address: query
     //   })
     // }
+    if (isInitSelfShow) return
+    let addressList = app.globalData.addressList || []
+    this.setData({
+      address: addressList.filter(item => item.isDefault)[0] || null
+    })
   },
 
   /**
@@ -38,17 +43,17 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    let addressList = app.globalData.addressList
-    let address
+    let addressList = app.globalData.addressList || []
     if (isInitSelfShow) {
-      address = addressList.filter(item => item.isDefault)[0]
+      this.setData({
+        address: addressList.filter(item => item.isDefault)[0] || null
+      })
     } else if (app.globalData.selectedAddress) {
-      address = addressList.filter(item => item.uid === app.globalData.selectedAddress)[0]
-      app.globalData.selectedAddress = ''
+      this.setData({
+        address: addressList.filter(item => item.uid === app.globalData.selectedAddress)[0] || null
+      })
+      delete app.globalData.selectedAddress
     }
-    this.setData({
-      address: address || null
-    })
     // if (app.globalData.address) {
     //   this.setData({
     //     address: app.globalData.address
@@ -95,7 +100,7 @@ Page({
 
   onTapLocation () {
     // let queryString = util.getQueryToString(this.data.address)
-    let id = this.data.address.uid || ''
+    let id = this.data.address && this.data.address.uid || ''
     wx.navigateTo({
       url: `../../pages/addressList/addressList?id=${id}`,
     })

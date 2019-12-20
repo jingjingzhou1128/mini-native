@@ -34,15 +34,21 @@ Page({
    */
   onShow: function () {
     this.setData({
-      addressList: app.globalData.addressList
+      addressList: app.globalData.addressList || []
     })
+    if (app.globalData.selectedAddress) {
+      this.setData({
+        selectedAddress: app.globalData.selectedAddress
+      })
+      delete app.globalData.selectedAddress
+    }
   },
 
   /**
    * Lifecycle function--Called when page hide
    */
   onHide: function () {
-
+    
   },
 
   /**

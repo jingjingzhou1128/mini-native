@@ -11,7 +11,8 @@
     "pages/pay/pay",
     "pages/location/location",
     "pages/addressList/addressList",
-    "pages/addressEdit/addressEdit"
+    "pages/addressEdit/addressEdit",
+    "pages/city/city"
   ],
   "window": {
     "backgroundTextStyle": "dark",

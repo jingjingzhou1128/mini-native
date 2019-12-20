@@ -1,3 +1,4 @@
+<wxs module="transData" src="../../utils/transData.wxs"></wxs>
 <!--pages/pay/pay.wxml-->
 <view class="container">
   <van-cell
@@ -5,11 +6,23 @@
     custom-class="choose-location"
     bind:click="onTapLocation"
   >
-    <icon class="iconfont icon-dingwei" slot="icon"></icon>
+    <block wx:if="{{address}}">
+      <view class="cell-title" slot="title"><text class="tag-home">{{transData.transAddressType(address.tag)}}</text><text>{{address.name + address.addrDet}}</text></view>
+      <view class="cell-label" slot="label">{{address.userName}} {{transData.transMale(address.userGender)}} {{address.phone}}</view>
+    </block>
+    <block wx:else>
+      <icon class="iconfont icon-dingwei" slot="icon"></icon>
+      <view slot="label" class="location-label">
+        <text>点击去选择地址</text>
+      </view>
+    </block>
+    <!-- <icon class="iconfont icon-dingwei" slot="icon"></icon>
     <view slot="label" class="location-label">
       <text wx:if="{{address}}">{{address.name}}</text>
       <text wx:else>点击去选择地址</text>
     </view>
+    <view class="cell-title" slot="title"><text class="tag-home">{{transData.transAddressType(item.tag)}}</text><text>{{item.name + item.addrDet}}</text></view>
+    <view class="cell-label" slot="label">{{item.userName}} {{transData.transMale(item.userGender)}} {{item.phone}}</view> -->
   </van-cell>
 
   <van-submit-bar

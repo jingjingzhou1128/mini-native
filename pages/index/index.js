@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 // const createRecycleContext = require('../../components/miniprogram-recycle-view/index.js')
+const bmap = require('../../libs/bmap-wx.min.js')
 
 Page({
   data: {
@@ -179,12 +180,20 @@ Page({
     // 商品是否在加载中
     isLoading: false,
     // 窗口可用高度
-    windowHeight: 0
+    windowHeight: 0,
     // showAuthor: true
+    // 当前送至地址
+    location: null,
+    // 是否显示送至地址提示
+    showLocationTip: false
   },
   // 监听页面加载回调函数
   onLoad: function () {
     this.getGoodsList()
+    this.BMap = new bmap.BMapWX({
+      ak: 'zrEND0UqaVqhRQAaMn3KGHjluFo78GLQ'
+    })
+    this.getSendLocation()
   },
   // 监听页面初次渲染完成回调函数
   onReady: function () {
@@ -207,6 +216,7 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
+    // this.getSendLocation()
     setTimeout(function () {
       wx.stopPullDownRefresh()
     }, 2000)
@@ -326,6 +336,53 @@ Page({
     app.globalData.classifyValue = value
     wx.switchTab({
       url: '../../pages/classify/classify',
+    })
+  },
+
+  getSendLocation () {
+    this.setData({
+      showLocationTip: true
+    })
+    let addressList = app.globalData.addressList || []
+    let defaultAddress = addressList.filter(item => item.isDefault)
+    if (defaultAddress.length > 0) {
+      this.setData({
+        location: defaultAddress[0]
+      })
+      setTimeout(() => {
+        this.setData({
+          showLocationTip: false
+        }, 5000)
+      })
+    } else {
+      this.location()
+    }
+  },
+
+  location() {
+    let _this = this
+    wx.getLocation({
+      success: function (res) {
+        _this.BMap.regeocoding({
+          location: `${res.latitude},${res.longitude}`,
+          fail: function (data) {},
+          success: function (data) {
+            if (data.originalData.status === 0) {
+              _this.setData({
+                location: {
+                  name: data.originalData.result.formatted_address
+                }
+              })
+              setTimeout(function () {
+                _this.setData({
+                  showLocationTip: false
+                })
+              }, 5000)
+            } else {}
+          }
+        })
+      },
+      fail: function (error) {}
     })
   },
   // getUserInfo (e) {

@@ -55,11 +55,25 @@
       "unicode_decimal": 58957
     },
     {
+      "icon_id": "1198591",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
       "icon_id": "1207836",
       "name": "left",
       "font_class": "left",
       "unicode": "e64f",
       "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "1257704",
+      "name": "刷新",
+      "font_class": "shuaxin",
+      "unicode": "e619",
+      "unicode_decimal": 58905
     },
     {
       "icon_id": "1265484",

@@ -1,0 +1,36 @@
+/* pages/city/city.wxss */
+/* .container {
+  padding-top: 78px;
+} */
+.anchor {
+  padding: 0 16px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+}
+.cell-value icon {
+  color: #f53e5d;
+  margin-right: 5px;
+}
+
+@keyframes refresh {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.refresh {
+  animation: refresh 2s infinite;
+}
+
+/* .current-location {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  background: #fff;
+}
+.current-location .anchor {
+  background: #f5f5f5;
+} */

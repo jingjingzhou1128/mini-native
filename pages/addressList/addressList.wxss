@@ -16,9 +16,23 @@
 }
 .cell-title {
   font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 .cell-label {
   font-size: 12px;
+}
+.tag-home {
+  display: inline-block;
+  color: #f53e5d;
+  background: #f7dadf;
+  border: 1px solid #f53e5d;
+  border-radius: 2px;
+  font-size: 10px;
+  height: 12px;
+  line-height: 12px;
+  padding: 0 2px;
+  margin-left: 3px;
 }
 
 .container .van-goods-action {

@@ -1,3 +1,32 @@
+var cityCode = {
+  '85': '阿克苏地区',
+  '96': '阿勒泰地区',
+  '103': '阿里地区',
+  '185': '阿坝藏族羌族自治州',
+  '230': '阿拉善盟',
+  '731': '阿拉尔市',
+  '130': '安庆市',
+  '263': '安顺市',
+  '267': '安阳市',
+  '324': '安康市',
+  '320': '鞍山市',
+  '35': '白银市',
+  '51': '白城市',
+  '57': '白山市',
+  '2359': '白沙黎族自治县',
+  '203': '百色市',
+  '112': '保山市',
+  '307': '保定市',
+  '1217': '保亭黎族苗族自治县',
+  '131': '北京市',
+  '133': '南平市',
+  '161': '南通市',
+  '163': '南昌市',
+  '261': '南宁市',
+  '315': '南京市',
+  '317': '无锡市',
+}
+
 function transMale (value) {
   switch (value) {
     case 'female':
@@ -22,11 +51,13 @@ function transAddressType (value) {
   }
 }
 
+function transCity (code) {
+  if (!code) return ''
+  return cityCode[code.toString()]
+}
+
 module.exports = {
   transMale: transMale,
-  transAddressType: transAddressType
+  transAddressType: transAddressType,
+  transCity: transCity
 }
-// module.exports = {
-//   transMale,
-//   transAddressType
-// }

@@ -47,8 +47,8 @@ Page({
     },
     // 当前选中的地址信息
     rgcData: {
-      city: '',
-      cityCode: '',
+      // city: '',
+      // cityCode: '',
       uid: ''
     },
     // 推荐地址
@@ -56,7 +56,9 @@ Page({
     // 搜索框值
     searchValue: '',
     // 搜索推荐地址
-    recomSearchAddress: []
+    recomSearchAddress: [],
+    // 选择的城市编码
+    cityCode: ''
   },
 
   /**
@@ -111,7 +113,12 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    if (app.globalData.cityCode) {
+      this.setData({
+        cityCode: app.globalData.cityCode
+      })
+      delete app.globalData.cityCode
+    }
   },
 
   /**
@@ -167,20 +174,22 @@ Page({
         })
         _this.setData({
           rgcData: {
-            city: '',
-            cityCode: '',
+            // city: '',
+            // cityCode: '',
             uid: ''
           },
-          recomAddress: []
+          recomAddress: [],
+          cityCode: 131
         })
       },
       success: function (data) {
         console.log('success', data)
         if (data.originalData.status === 0) {
           _this.setData({
-            'rgcData.city': data.originalData.result.addressComponent.city,
-            'rgcData.cityCode': data.originalData.result.cityCode,
-            recomAddress: data.originalData.result.pois
+            // 'rgcData.city': data.originalData.result.addressComponent.city,
+            // 'rgcData.cityCode': data.originalData.result.cityCode,
+            recomAddress: data.originalData.result.pois,
+            cityCode: data.originalData.result.cityCode
           })
         } else {
           wx.showToast({
@@ -190,11 +199,12 @@ Page({
           })
           _this.setData({
             rgcData: {
-              city: '',
-              cityCode: '',
+              // city: '',
+              // cityCode: '',
               uid: ''
             },
-            recomAddress: []
+            recomAddress: [],
+            cityCode: 131
           })
         }
       }
@@ -235,7 +245,7 @@ Page({
         longitude: poi[0].point.x,
         name: poi[0].name,
         uid: poi[0].uid,
-        cityCode: this.data.rgcData.cityCode
+        // cityCode: this.data.rgcData.cityCode
       }
       wx.navigateBack()
     }
@@ -267,7 +277,7 @@ Page({
         longitude: poi[0].location.lng,
         name: poi[0].name,
         uid: poi[0].uid,
-        cityCode: this.data.rgcData.cityCode
+        // cityCode: this.data.rgcData.cityCode
       }
       wx.navigateBack()
       // wx.navigateTo({
@@ -292,7 +302,8 @@ Page({
     }
     this.BMap.suggestion({
       query: value,
-      region: this.data.rgcData.cityCode,
+      // region: this.data.rgcData.cityCode,
+      region: this.data.cityCode,
       city_limit: true,
       fail: function (data) {
         console.log('fail', data)
@@ -321,10 +332,15 @@ Page({
   },
 
   onSearchChange (e) {
-    console.log(e)
     this.setData({
       searchValue: e.detail
     })
     this.searchSuggest(e.detail)
+  },
+
+  selectCity (e) {
+    wx.navigateTo({
+      url: `../../pages/city/city`
+    })
   }
 })

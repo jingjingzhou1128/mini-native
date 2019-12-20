@@ -18,7 +18,7 @@ Page({
       longitude: 0,
       name: '',
       uid: '',
-      cityCode: '',
+      // cityCode: '',
     },
     tags: [
       {
@@ -42,7 +42,8 @@ Page({
   onLoad: function (options) {
     console.log('load')
     if (options.id) {
-      let address = app.globalData.addressList.filter(item => item.uid === options.id)
+      let addressList = app.globalData.addressList || []
+      let address = addressList.filter(item => item.uid === options.id)
       if (address.length === 0) return
       this.setData({
         address: address[0]
@@ -61,16 +62,15 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    console.log(app.globalData.address)
     if (app.globalData.address) {
       this.setData({
-        'address.cityCode': app.globalData.address.cityCode,
+        // 'address.cityCode': app.globalData.address.cityCode,
         'address.latitude': app.globalData.address.latitude,
         'address.longitude': app.globalData.address.longitude,
         'address.name': app.globalData.address.name,
         'address.uid': app.globalData.address.uid
       })
-      app.globalData.address = null
+      delete app.globalData.address
     }
   },
 
@@ -144,7 +144,7 @@ Page({
       longitude: this.data.address.longitude,
       latitude: this.data.address.latitude,
       uid: this.data.address.uid,
-      cityCode: this.data.address.cityCode,
+      // cityCode: this.data.address.cityCode,
     })
     wx.navigateTo({
       url: `../../pages/location/location?${queryString}`,
@@ -165,17 +165,31 @@ Page({
 
   saveAddress () {
     let _this = this
-    if (app.globalData.addressList.filter(item => item.uid === _this.data.address.uid).length > 0) {
-      app.globalData.addressList = app.globalData.addressList.map(item => {
-        if (item.uid === _this.data.address.uid) {
-          item = Object.assign({}, _this.data.address)
-        }
+    let addressList = app.globalData.addressList || []
+    if (_this.data.address) {
+      addressList = addressList.map(item => {
+        item.isDefault = false
         return item
       })
-    } else {
-      app.globalData.addressList.push(Object.assign({}, _this.data.address))
     }
-    console.log(app.globalData.addressList)
+    let index = addressList.findIndex(item => item.uid === _this.data.address.uid)
+    if (index >= 0) {
+      addressList[index] = Object.assign({}, _this.data.address)
+    } else {
+      addressList.push(Object.assign({}, _this.data.address))
+    }
+    app.globalData.addressList = addressList
+    app.globalData.selectedAddress = this.data.address.uid
+    // if (addressList.filter(item => item.uid === _this.data.address.uid).length > 0) {
+    //   app.globalData.addressList = addressList.map(item => {
+    //     if (item.uid === _this.data.address.uid) {
+    //       item = Object.assign({}, _this.data.address)
+    //     }
+    //     return item
+    //   })
+    // } else {
+    //   app.globalData.addressList.push(Object.assign({}, _this.data.address))
+    // }
     wx.navigateBack()
   }
 })

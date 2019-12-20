@@ -30,6 +30,7 @@
         disabled
         border="{{false}}"
         input-class="form-item-input"
+        bindtap="chooseLocation"
       />
       <icon slot="right-icon" class="iconfont icon-arrow-right" bindtap="chooseLocation"></icon>
     </van-cell>

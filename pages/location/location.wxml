@@ -1,3 +1,4 @@
+<wxs module="transData" src="../../utils/transData.wxs"></wxs>
 <!--pages/location/location.wxml-->
 <view class="container">
   <view class="search-wrapper">
@@ -7,11 +8,12 @@
       shape="round"
       bind:search="onSearch"
       custom-class="search-location"
+      show-action
       use-left-icon-slot
       bind:change="__searchChange"
     >
-      <view class="search-label" slot="label">
-        <text>{{rgcData.city}}</text>
+      <view class="search-label" slot="label" bindtap="selectCity">
+        <text>{{transData.transCity(cityCode)}}</text>
         <icon class="iconfont icon-arrow-down-full"></icon>
       </view>
     </van-search>
@@ -25,7 +27,7 @@
       </van-cell>
     </van-cell-group>
   </block>
-  <block wx:else>
+  <block hidden="{{recomSearchAddress.length <= 0}}">
     <view class="map">
       <map 
         id="map" 

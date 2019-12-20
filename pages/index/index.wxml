@@ -6,6 +6,7 @@
     <view class="left">
       <icon class="iconfont icon-dingwei"></icon>
       <text>最快送达</text>
+      <view class="location-tip" hidden="{{location && showLocationTip ? false : true}}">送至:{{location.name}}</view>
     </view>
     <navigator class="to-search" url="../../pages/search/search">
       <icon class="iconfont icon-sousuo"></icon>

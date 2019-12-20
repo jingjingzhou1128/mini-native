@@ -39,16 +39,16 @@ App({
               longitude: 120.33417498124,
               name: '观山名筑',
               uid: '92b4893932cd2228c7f50ddf',
-              cityCode: 317,
-              userName: '匿名',
+              // cityCode: 317,
+              userName: '周晶晶',
               userGender: 'female',
-              phone: '177152101212',
-              addrDet: '观山名筑',
+              phone: '17715210689',
+              addrDet: '观山名筑441-203',
               tag: 'home',
               isDefault: true
             }
           ]
-        }, 1000)
+        }, 0)
       }
     })
 

@@ -1,0 +1,26 @@
+<wxs module="transData" src="../../utils/transData.wxs"></wxs>
+<!--pages/city/city.wxml-->
+<view class="container">
+  <view class="current-location">
+    <view class="anchor">当前定位</view>
+    <van-cell customs-class="cell" bind:click="selectCurrent">
+      <view slot="title" class="cell-value">
+        <icon class="iconfont icon-dingwei"></icon>
+        <text wx:if="{{locationStatus === 0}}">正在定位...</text>
+        <text wx:elif="{{locationStatus === 1}}">{{transData.transCity(currentCity)}}</text>
+        <text wx:else>定位失败</text>
+      </view>
+      <view class="cell-value" catchtap="reLocation">
+        <icon class="iconfont icon-shuaxin {{locationStatus === 0 ? 'refresh' : ''}}"></icon>
+        <text>重新定位</text>
+      </view>
+    </van-cell>
+  </view>
+
+  <van-index-bar scroll-top="{{scrollTop}}" sticky="{{false}}" bind:select="selectIndex">
+    <block wx:for="{{cityList}}" wx:for-index="aidx" wx:for-item="aitem" wx:key="index">
+      <van-index-anchor index="{{aitem.index}}"/>
+      <van-cell wx:for="{{aitem.children}}" wx:for-index="cidx" wx:for-item="citem" wx:key="value" title="{{citem.label}}" data-code="{{citem.value}}" bindtap="selectCity" />
+    </block>
+  </van-index-bar>
+</view>

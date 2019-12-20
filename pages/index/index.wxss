@@ -17,6 +17,28 @@
 }
 .search-wrapper .left {
   color: #f53e5d;
+  position: relative;
+}
+.search-wrapper .left .location-tip {
+  position: absolute;
+  left: -5px;
+  background: #000;
+  padding: 0 10px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 10px;
+  color: #fff;
+  border-radius: 10px;
+}
+.search-wrapper .left .location-tip::before {
+  position: absolute;
+  display: block;
+  content: "";
+  border-width: 5px;
+  border-color: transparent transparent #000 transparent;
+  border-style: solid;
+  top: -10px;
+  left: 8px;
 }
 .search-wrapper .left icon {
   font-size: 18px;
