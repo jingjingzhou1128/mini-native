@@ -2,78 +2,83 @@
 <!-- <mp-navigation-bar ext-class="navbar" title="优鲜生活" back="{{false}}"></mp-navigation-bar> -->
 <!--index.wxml-->
 <view class="container">
-  <view class="search-wrapper">
-    <view class="left">
-      <icon class="iconfont icon-dingwei"></icon>
-      <text>最快送达</text>
-      <view class="location-tip" hidden="{{location && showLocationTip ? false : true}}">送至:{{location.name}}</view>
+  <block wx:if="{{permission.hasLocation}}">
+    <view class="search-wrapper">
+      <view class="left" bindtap="toSelectAddr">
+        <icon class="iconfont icon-dingwei"></icon>
+        <text>最快送达</text>
+        <view class="location-tip" hidden="{{location && showLocationTip ? false : true}}">送至:{{location.name}}</view>
+      </view>
+      <navigator class="to-search" url="../../pages/search/search">
+        <icon class="iconfont icon-sousuo"></icon>
+        <text>智利车厘子J级29.9</text>
+      </navigator>
     </view>
-    <navigator class="to-search" url="../../pages/search/search">
-      <icon class="iconfont icon-sousuo"></icon>
-      <text>智利车厘子J级29.9</text>
-    </navigator>
-  </view>
-  <view class="swiper-wrapper">
-    <swiper
-      autoplay="{{true}}"
-      interval="{{5000}}"
-      bindchange="handlerSwiper">
-      <block wx:for="{{swiper}}" wx:key="{{index}}">
-        <swiper-item>
-          <view class="swiper-item">
-            <image src="{{item.src}}" mode="widthFix"></image>
+    <view class="swiper-wrapper">
+      <swiper
+        autoplay="{{true}}"
+        interval="{{5000}}"
+        bindchange="handlerSwiper">
+        <block wx:for="{{swiper}}" wx:key="{{index}}">
+          <swiper-item>
+            <view class="swiper-item">
+              <image src="{{item.src}}" mode="widthFix"></image>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <text class="swiper-index">{{swiperIndex}}/{{swiper.length}}</text>
+      <button class="btn-share">立即分享</button>
+    </view>
+    <view class="classify-wrapper">
+      <view class="equity-list">
+        <view class="equity-item">
+          <icon class="iconfont icon-shezhi"></icon>
+          <text>严格品控享安心</text>
+        </view>
+        <view class="equity-item">
+          <icon class="iconfont icon-shezhi"></icon>
+          <text>全球原产地直采</text>
+        </view>
+        <view class="equity-item">
+          <icon class="iconfont icon-shezhi"></icon>
+          <text>24小时快速退款</text>
+        </view>
+      </view>
+      <movable-area style="width: 100%;" id="classifyMoveWrap">
+        <movable-view style="width: 200%;" class="classify-content" direction="horizontal" bindchange="handlerMove" id="classifyMove">
+          <view class="classify-item" wx:for="{{classifyList}}" wx:key="{{index}}" data-value="{{item.value}}" bind:tap="toClassify">
+            <view class="image-wrapper">
+              <image src="{{item.src}}" mode="widthFix"></image>
+            </view>
+            <text>{{item.name}}</text>
           </view>
-        </swiper-item>
+        </movable-view>
+      </movable-area>
+      <progress percent="{{moveProgress}}" active active-mode="forwards" border-radius="{{3}}" stroke-width="{{4}} " activeColor="#f53e5d" backgroundColor="#ddd" duration="{{10}}"/>
+    </view>
+    <view class="goods-wrapper {{isSticky ? 'sticky' : ''}}">
+      <movable-area style="width: 100%;height: 54px;" id="goodsMenu">
+        <movable-view style="width: {{goodsClassList.length * 75}}px;" direction="horizontal">
+          <view wx:for="{{goodsClassList}}" wx:key="index" class="goods-class {{item.classify === goodsSelected ? 'selected' : ''}}" data-classify="{{item.classify}}" bindtap="handlerFilterGoods">
+            <view class="name">{{item.name}}</view>
+            <view class="type">{{item.type}}</view>
+          </view>
+        </movable-view>
+      </movable-area>
+      <block wx:if="{{!isLoading}}">
+        <goods-list goodsList="{{goodsList}}" bindaddcat="addCat" catAnimation="true"></goods-list>
+        <view class="bottom-tip" wx:if="{{loadFinish}}">我是有底线的～</view>
       </block>
-    </swiper>
-    <text class="swiper-index">{{swiperIndex}}/{{swiper.length}}</text>
-    <button class="btn-share">立即分享</button>
-  </view>
-  <view class="classify-wrapper">
-    <view class="equity-list">
-      <view class="equity-item">
-        <icon class="iconfont icon-shezhi"></icon>
-        <text>严格品控享安心</text>
-      </view>
-      <view class="equity-item">
-        <icon class="iconfont icon-shezhi"></icon>
-        <text>全球原产地直采</text>
-      </view>
-      <view class="equity-item">
-        <icon class="iconfont icon-shezhi"></icon>
-        <text>24小时快速退款</text>
+      <view wx:else class="loading-wrapper" style="height:{{windowHeight}}px;">
+        <van-loading color="#f53e5d"></van-loading>
       </view>
     </view>
-    <movable-area style="width: 100%;" id="classifyMoveWrap">
-      <movable-view style="width: 200%;" class="classify-content" direction="horizontal" bindchange="handlerMove" id="classifyMove">
-        <view class="classify-item" wx:for="{{classifyList}}" wx:key="{{index}}" data-value="{{item.value}}" bind:tap="toClassify">
-          <view class="image-wrapper">
-            <image src="{{item.src}}" mode="widthFix"></image>
-          </view>
-          <text>{{item.name}}</text>
-        </view>
-      </movable-view>
-    </movable-area>
-    <progress percent="{{moveProgress}}" active active-mode="forwards" border-radius="{{3}}" stroke-width="{{4}} " activeColor="#f53e5d" backgroundColor="#ddd" duration="{{10}}"/>
-  </view>
-  <view class="goods-wrapper {{isSticky ? 'sticky' : ''}}">
-    <movable-area style="width: 100%;height: 54px;" id="goodsMenu">
-      <movable-view style="width: {{goodsClassList.length * 75}}px;" direction="horizontal">
-        <view wx:for="{{goodsClassList}}" wx:key="index" class="goods-class {{item.classify === goodsSelected ? 'selected' : ''}}" data-classify="{{item.classify}}" bindtap="handlerFilterGoods">
-          <view class="name">{{item.name}}</view>
-          <view class="type">{{item.type}}</view>
-        </view>
-      </movable-view>
-    </movable-area>
-    <block wx:if="{{!isLoading}}">
-      <goods-list goodsList="{{goodsList}}" bindaddcat="addCat" catAnimation="true"></goods-list>
-      <view class="bottom-tip" wx:if="{{loadFinish}}">我是有底线的～</view>
-    </block>
-    <view wx:else class="loading-wrapper" style="height:{{windowHeight}}px;">
-      <van-loading color="#f53e5d"></van-loading>
-    </view>
-  </view>
+  </block>
 
+  <view class="open-permission" wx:else>
+    <button open-type="openSetting" bindopensetting="openSetting" class="btn-permis">开通小程序权限</button>
+  </view>
   <!-- <van-dialog 
     use-slot
     title="授权"

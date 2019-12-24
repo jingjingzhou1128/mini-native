@@ -1,0 +1,57 @@
+<wxs module="transData" src="../../utils/transData.wxs"></wxs>
+<!--pages/selectAddr/selectAddr.wxml-->
+<view class="container">
+  <view class="current-location">
+    <view class="anchor">
+      <text class="title">送至</text>
+    </view>
+    <van-cell customs-class="cell" bind:click="selectAddr">
+      <view slot="title" class="cell-value">
+        <text>{{sendAddr.name}}</text>
+      </view>
+    </van-cell>
+  </view>
+
+  <view class="current-location">
+    <view class="anchor">
+      <text class="title">当前定位</text>
+      <navigator url="../../pages/addressEdit/addressEdit" class="operat">
+        <icon class="iconfont icon-plus"></icon>
+        <text>新增地址</text>
+      </navigator>
+    </view>
+    <van-cell customs-class="cell" bind:click="selectAddr">
+      <view slot="title" class="cell-value">
+        <icon class="iconfont icon-dingwei"></icon>
+        <text wx:if="{{locationStatus === 0}}">正在定位...</text>
+        <text wx:elif="{{locationStatus === 1}}">{{currentAddr.name}}</text>
+        <text wx:else>定位失败</text>
+      </view>
+      <view class="cell-value" catchtap="reLocation">
+        <icon class="iconfont icon-shuaxin {{locationStatus === 0 ? 'refresh' : ''}}"></icon>
+        <text>重新定位</text>
+      </view>
+    </van-cell>
+  </view>
+
+  <view class="current-location">
+    <view class="anchor">
+      <text class="title">我的收货地址</text>
+    </view>
+    <van-cell customs-class="cell" wx:for="{{myAddrs}}" wx:key="uid" data-id="{{item.uid}}" bind:click="selectAddr">
+      <view class="cell-title" slot="title"><text>{{item.name + item.addrDet}}</text><text class="tag-home">{{transData.transAddressType(item.tag)}}</text></view>
+      <view class="cell-label" slot="label">{{item.userName}} {{transData.transMale(item.userGender)}} {{item.phone}}</view>
+    </van-cell>
+  </view>
+
+  <view class="current-location">
+    <view class="anchor">
+      <text class="title">附近地址</text>
+    </view>
+    <van-cell customs-class="cell" wx:for="{{nearAddrs}}" wx:key="uid" data-id="{{item.uid}}" bind:click="selectAddr">
+      <view slot="title" class="cell-value">
+        <text>{{item.name}}</text>
+      </view>
+    </van-cell>
+  </view>
+</view>

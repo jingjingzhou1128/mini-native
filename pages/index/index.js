@@ -3,6 +3,7 @@
 const app = getApp()
 // const createRecycleContext = require('../../components/miniprogram-recycle-view/index.js')
 const bmap = require('../../libs/bmap-wx.min.js')
+let isInitSelfShow = true
 
 Page({
   data: {
@@ -185,21 +186,69 @@ Page({
     // 当前送至地址
     location: null,
     // 是否显示送至地址提示
-    showLocationTip: false
+    showLocationTip: false,
+    permission: {
+      hasLocation: true
+    }
   },
   // 监听页面加载回调函数
   onLoad: function () {
-    this.getGoodsList()
     this.BMap = new bmap.BMapWX({
       ak: 'zrEND0UqaVqhRQAaMn3KGHjluFo78GLQ'
     })
-    this.getSendLocation()
+    this.getScreenHeight()
+    let _this = this
+    wx.getSetting({
+      success: function (res) {
+        _this.setData({
+          'permission.hasLocation': !!res.authSetting['scope.userLocation']
+        })
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success() {
+              wx.reLaunch({
+                url: '../../pages/index/index',
+              })
+            }
+          })
+        }
+      }
+    })
   },
   // 监听页面初次渲染完成回调函数
   onReady: function () {
-    this.getMoveProgress(0)
-    this.initStickyTop()
-    this.getScreenHeight()
+    let _this = this
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userLocation']) {
+          _this.getMoveProgress(0)
+          _this.initStickyTop()
+          _this.getGoodsList()
+          _this.getSendLocation()
+        }
+      }
+    })
+  },
+  onShow: function () {
+    if (isInitSelfShow) return
+    let _this = this
+    wx.getSetting({
+      success: function (res) {
+        _this.setData({
+          'permission.hasLocation': !!res.authSetting['scope.userLocation']
+        })
+        if (res.authSetting['scope.userLocation']) {
+          _this.data.moveProgress || _this.getMoveProgress(0)
+          _this.data.stickyTop || _this.initStickyTop()
+          _this.data.goodsList.length > 0 || _this.getGoodsList()
+          _this.data.location || _this.getSendLocation()
+        }
+      }
+    })
+  },
+  onHide: function () {
+    isInitSelfShow = false
   },
   // 监听页面上拉触底事件触发函数
   onReachBottom: function () {
@@ -232,6 +281,7 @@ Page({
   initStickyTop () {
     let query = wx.createSelectorQuery()
     query.select('#goodsMenu').boundingClientRect(res => {
+      if (!res) return
       this.setData({
         stickyTop: res.top
       })
@@ -272,6 +322,7 @@ Page({
     let query = this.createSelectorQuery()
     let _this = this
     query.select('#classifyMoveWrap').boundingClientRect(rect => {
+      if (!rect) return
       let wrapWidth = rect.width
       let moveWidth = rect.width * 2
       let moveProgress = 0
@@ -385,14 +436,16 @@ Page({
       fail: function (error) {}
     })
   },
-  // getUserInfo (e) {
-  //   console.log(e)
-  // },
-  // onAuthorClose (e) {
-  //   this.setData({
-  //     showAuthor: false
-  //   })
-  // },
+
+  toSelectAddr () {
+    wx.navigateTo({
+      url: '../../pages/selectAddr/selectAddr',
+    })
+  },
+
+  openSetting (res) {
+    console.log(res)
+  },
   // 自由数据
   customData: {
     // 商品分类移动定时器索引

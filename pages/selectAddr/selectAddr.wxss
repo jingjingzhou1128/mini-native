@@ -1,0 +1,30 @@
+/* pages/selectAddr/selectAddr.wxss */
+.anchor {
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.anchor .title {
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+}
+.anchor .operat {
+  color: #f53e5d;
+  font-size: 14px;
+}
+.anchor .operat icon {
+  font-size: 14px;
+  margin-top: -11px;
+}
+.cell-value icon {
+  color: #f53e5d;
+  margin-right: 5px;
+}
+.van-cell__title {
+  flex: 1 !important;
+}
+.van-cell__value {
+  flex: unset !important;
+}

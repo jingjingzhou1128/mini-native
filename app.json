@@ -12,7 +12,8 @@
     "pages/location/location",
     "pages/addressList/addressList",
     "pages/addressEdit/addressEdit",
-    "pages/city/city"
+    "pages/city/city",
+    "pages/selectAddr/selectAddr"
   ],
   "window": {
     "backgroundTextStyle": "dark",

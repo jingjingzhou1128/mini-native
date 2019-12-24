@@ -29,6 +29,10 @@
   font-size: 10px;
   color: #fff;
   border-radius: 10px;
+  white-space: nowrap;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .search-wrapper .left .location-tip::before {
   position: absolute;
@@ -332,3 +336,10 @@
   margin-top: 200px;
 } */
 
+.open-permission .btn-permis {
+  background-color: #f53e5d;
+  border-color: #f53e5d;
+  width: 80%;
+  color: #fff;
+  font-size: 14px;
+}
